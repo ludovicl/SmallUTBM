@@ -102,7 +102,24 @@ public class Moteur {
 
 	 public void selectionEtudiant()
 	 {
-		 
+		 /*---------Cin de l'utilisateur ------*/
+			char buf[]=new char[10];
+			Reader in = new InputStreamReader(System.in);
+		    try {
+				in.read(buf,0,10);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		    String choix = new String(buf);
+			 /*---------Fin Cin de l'utilisateur ------*/
+
+		    switch (choix)
+			{ 
+		    case "1": j1.choisirEtudiant(unTC);break;
+		    case "2":j1.choisirEtudiant(unMaster);break;
+		    case"3":j1.choisirEtudiant(unLicense);break;
+			}
 	 }
 	
 	

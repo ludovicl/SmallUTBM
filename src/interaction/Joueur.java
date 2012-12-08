@@ -8,8 +8,8 @@ public class Joueur {
 	private String nomJoueur;
 	
 		
-    public Student etudiantEnDeclin;
-    public Student etudiantActif;
+    public Student studentEnDeclin;
+    public Student studentActif;
     
     
     public Joueur()
@@ -48,9 +48,9 @@ public class Joueur {
 		  
 	  }
 	
-	  public void choisirEtudiant() 
+	  public void choisirEtudiant(Student stu) 
 	  {
-		  
+		  studentActif=stu;
 		  
 	  }
 	
