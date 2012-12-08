@@ -11,8 +11,7 @@ public class Main {
 		
 		Moteur m= new Moteur();
 		m.genererCarte();
-		m.genererEtudiant();
-		m.selectionEtudiant();
+		m.choixEtudiants();
 	}
 	
 	

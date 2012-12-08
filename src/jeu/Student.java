@@ -1,5 +1,7 @@
 package jeu;
 
+import java.util.Scanner;
+
 
 public enum Student {
 	
@@ -13,7 +15,6 @@ public enum Student {
 	private Qualification qualif;
 	
 	private int nbHeures=10;
-	
 	
 	private String nomQualification;
 	private String description = "";
@@ -92,6 +93,7 @@ public enum Student {
 	}
 	
 	
+
 	
 
 }
