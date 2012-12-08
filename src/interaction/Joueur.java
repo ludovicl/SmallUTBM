@@ -12,9 +12,15 @@ public class Joueur {
     public Student etudiantActif;
     
     
+    public Joueur()
+    {
+
+    }
+    
 	 public void setNomJoueur (String nom)
 	 {
-		 nomJoueur=nom;
+		 this.nomJoueur=nom;
+		 
 	 }
 	 
 	 public String getNomJoueur()
@@ -44,6 +50,7 @@ public class Joueur {
 	
 	  public void choisirEtudiant() 
 	  {
+		  
 		  
 	  }
 	

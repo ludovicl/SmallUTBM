@@ -5,21 +5,32 @@ import java.awt.geom.Point2D;
 public enum Uv 
 {
 
-	TM,
+	TM(),
 	CS,
 	Stage;
 	
+	private int coordonneesX,coordonneesY;
 	
-	private Point2D coordonees;
 	
-	public Point2D getCoordonnees()
-	{
-		return coordonees;
+	
+	
+	public void setCoordonnees(int x, int y)
+	{	
+	
+		this.coordonneesX=x;
+		this.coordonneesY=y;	
+
 	}
 	
-	public void setCoordonnees(double x, double y)
+	
+	public int getCoordonneesX()
 	{
-		coordonees.setLocation(x, y);
+		return this.coordonneesX;
+	}
+	
+	public int getCoordonneesY()
+	{
+		return this.coordonneesY;
 	}
 	
 	

@@ -1,3 +1,5 @@
+import scheduler.Moteur;
+
 
 public class Main {
 
@@ -5,6 +7,12 @@ public class Main {
 	{
 		System.out.println("Hello World");
 	
-	}
 		
+		
+		Moteur m= new Moteur();
+		m.genererCarte();
+		m.genererEtudiant();
+	}
+	
+	
 }
