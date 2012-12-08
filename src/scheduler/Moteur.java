@@ -3,6 +3,7 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.util.Scanner;
 
 import jeu.Tc;
 import jeu.Student;
@@ -103,24 +104,32 @@ public class Moteur {
 	 public void selectionEtudiant()
 	 {
 		 /*---------Cin de l'utilisateur ------*/
-			char buf[]=new char[10];
-			Reader in = new InputStreamReader(System.in);
-		    try {
-				in.read(buf,0,10);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		    String choix = new String(buf);
-			 /*---------Fin Cin de l'utilisateur ------*/
-
-		    switch (choix)
+		 Scanner in = new Scanner(System.in);
+		 int choix = in.nextInt();
+		/*---------Fin Cin de l'utilisateur ------*/
+		  
+		 	switch (choix)
 			{ 
-		    case "1": j1.choisirEtudiant(unTC);break;
-		    case "2":j1.choisirEtudiant(unMaster);break;
-		    case"3":j1.choisirEtudiant(unLicense);break;
+		    case 1: j1.choisirEtudiant(unTC);
+		    System.out.println("Felicitation, vous êtes un "+unTC.getDescription());
+		    break;
+		    
+		    case 2:j1.choisirEtudiant(unMaster);
+		    System.out.println("Felicitation, vous êtes un "+unMaster.getDescription());
+		    break;
+		    
+		    case 3:j1.choisirEtudiant(unLicense);
+		    System.out.println("Felicitation, vous êtes un "+unLicense.getDescription());
+		    break;
+		    
+		    default: 
+		    	 System.out.println("Le choix plante ...");
+			
 			}
+		    
+		    
 	 }
+	 
 	
 	
 /*
