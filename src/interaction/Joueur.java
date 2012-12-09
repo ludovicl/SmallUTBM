@@ -21,22 +21,29 @@ public class Joueur {
 	/*-----------------------------*/
 
 	/*-------tableau d'étudiants disponibles----*/
-	private Student[] tabStudent= new Student[3];
+	static private Student[] tabStudent= new Student[3];
+	/*----Static car il doit être le même pour tout les joueurs---*/
 
-public void reorganiserTableau(Object tab[],int index)
-{
-	Object tempo;
-	tempo=tab[tab.length];
-	tab[index]=tempo;
-	System.out.println("ca passe avant la boucle");
+public Student[] reorganiserTableau(Object tab[],int index)
+{	
 	
-	for(int i=index; i<tab.length-index-1; i++)
+	System.out.println("ca passe avant la boucle");
+	Object tempo1, tempo2;
+	System.out.println("Taille du tableau : "+tab.length);
+	tempo1=tab[tab.length-1];
+	tab[tab.length-1]=tab[index-1];
+	//tempo2=tab[index];
+	System.out.println("à la derniere place du tableau : "+tab[tab.length-1]);
+
+	
+	return (Student[]) tab;
+	/*
+	for(int i=index; i<tab.length-index; i++)
 	{	
 		System.out.println("ca passe dans la boucle");
 		tab[tab.length-i]=tab[index+i];
-		
 		//tab[index+i+1]=tab[index+i];
-	}
+	}*/
 	
 }
 
@@ -116,9 +123,9 @@ public void reorganiserTableau(Object tab[],int index)
 			System.out.println("Le choix plante ...");
 
 		}
-
 		
-		this.reorganiserTableau(tabStudent, choix);
+		tabStudent=this.reorganiserTableau(tabStudent, choix);
+
 
 	}
 
