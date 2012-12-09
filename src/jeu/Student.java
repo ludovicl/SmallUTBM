@@ -70,15 +70,40 @@ public enum Student {
 		description=typeStudent+nomQualification;
 	}
 	
+	public static Student[] reorganiserTableau(Student tab[],int index)
+	{	
+		Student newTab[]=new Student[tab.length-1];//creation d'un nouveau tableau
+		
+		
+			
+			//recopie tout les element de tab dans newTab sauf l'index
+			for(int i=0; i<index-1; i++)//on va de 0 à index-1
+			{
+				System.out.println("work 1 !------"+ i);
+				newTab[i]=tab[i];
+			}	
+			
+			for(int i=index-1; i<tab.length-1; i++)
+			{
+				System.out.println("work 2 ! -----"+(i-index+1) );
+				newTab[i]=tab[i+1];
+			}
+			
+			
+			for(int i=0; i<newTab.length;i++)
+				System.out.println(newTab[i]);
+			System.out.println("all work !");
+		//	tab=newTab;
+		return   newTab;
+
+
+	} 
 	
 	public String getDescription ()
 	{
 		return this.description;
 	}
-	public void setDescrpition(String des, String stu)
-	{
-		this.description=des;	
-	}
+	
 	
 	private int nombreHeuresDeTravail=10;
 	

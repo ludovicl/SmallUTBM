@@ -18,40 +18,29 @@ public class Joueur {
 	private Student unTC = Student.TC;
 	private Student unMaster  = Student.Master;
 	private Student unLicense = Student.License;
+	private Student unEtranger = Student.Etranger;
+	private Student unPrepa = Student.Prepa;
+	private Student unDUT = Student.DUT;
+
+
+
 	/*-----------------------------*/
 
 	/*-------tableau d'étudiants disponibles----*/
-	static private Student[] tabStudent= new Student[3];
+	static private Student[] tabStudent= new Student[6];
 	/*----Static car il doit être le même pour tout les joueurs---*/
 
-public Student[] reorganiserTableau(Object tab[],int index)
-{	
 	
-	System.out.println("ca passe avant la boucle");
-	Object tempo1, tempo2;
-	System.out.println("Taille du tableau : "+tab.length);
-	tempo1=tab[tab.length-1];
-	tab[tab.length-1]=tab[index-1];
-	//tempo2=tab[index];
-	System.out.println("à la derniere place du tableau : "+tab[tab.length-1]);
-
 	
-	return (Student[]) tab;
-	/*
-	for(int i=index; i<tab.length-index; i++)
-	{	
-		System.out.println("ca passe dans la boucle");
-		tab[tab.length-i]=tab[index+i];
-		//tab[index+i+1]=tab[index+i];
-	}*/
 	
-}
-
 	public Joueur()
 	{
 		tabStudent[0]=unTC;
 		tabStudent[1]=unMaster;
-		tabStudent[2]=unLicense;
+		tabStudent[2]=unEtranger;
+		tabStudent[3]=unPrepa;
+		tabStudent[4]=unDUT;
+		tabStudent[5]=unLicense;
 	}
 
 	public void setNomJoueur (String nom)
@@ -92,7 +81,7 @@ public Student[] reorganiserTableau(Object tab[],int index)
 
 	public void selectionEtudiant()
 	{
-		System.out.println("Joueur 1 vous avez le choix entre : ");			
+		System.out.println(nomJoueur+" vous avez le choix entre : ");			
 
 
 		/*----Affichage des etudiants--------------*/
@@ -123,9 +112,13 @@ public Student[] reorganiserTableau(Object tab[],int index)
 			System.out.println("Le choix plante ...");
 
 		}
-		
-		tabStudent=this.reorganiserTableau(tabStudent, choix);
 
+		//Student tabStudent2[]=new Student[tabStudent.length-1];
+		
+		tabStudent=Student.reorganiserTableau(tabStudent, choix);
+
+		for(int i=0; i<tabStudent.length;i++)
+			System.out.println(tabStudent[i]);
 
 	}
 
