@@ -2,7 +2,13 @@ package interaction;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import jeu.Student;
+import jeu.Dut;
+import jeu.Etranger;
+import jeu.Etudiant;
+import jeu.License;
+import jeu.Master;
+import jeu.Prepa;
+import jeu.Tc;
 
 public class Joueur {
 
@@ -11,32 +17,32 @@ public class Joueur {
 	private String nomJoueur;
 
 
-	public Student studentEnDeclin;
-	public Student studentActif;
+	public Etudiant etudiantEnDeclin;
+	public Etudiant etudiantActif;
 
 	/*--Creation des Students----*/
-	private Student unTC = Student.TC;
-	private Student unMaster  = Student.Master;
-	private Student unLicense = Student.License;
-	private Student unEtranger = Student.Etranger;
-	private Student unPrepa = Student.Prepa;
-	private Student unDUT = Student.DUT;
+	private Tc unTC = new Tc();
+	private Master unMaster  = new Master();
+	private License unLicense = new License();
+	private Etranger unEtranger = new Etranger();
+	private Prepa unPrepa = new Prepa();
+	private Dut unDUT = new Dut();
 
 	/*-----------------------------*/
 
 	/*-------tableau d'étudiants disponibles----*/
-	static private Student[] tabStudent= new Student[6];
+	static private Etudiant[] tabEtudiant= new Etudiant[6];
 	/*----Static car il doit être le même pour tout les joueurs---*/
 	
 	
 	public Joueur()
 	{
-		tabStudent[0]=unTC;	
-		tabStudent[1]=unMaster;
-		tabStudent[2]=unEtranger;
-		tabStudent[3]=unPrepa;
-		tabStudent[4]=unDUT;
-		tabStudent[5]=unLicense;
+		tabEtudiant[0]=unTC;	
+		tabEtudiant[1]=unMaster;
+		tabEtudiant[2]=unEtranger;
+		tabEtudiant[3]=unPrepa;
+		tabEtudiant[4]=unDUT;
+		tabEtudiant[5]=unLicense;
 	}
 
 	public void setNomJoueur (String nom)
@@ -70,9 +76,9 @@ public class Joueur {
 
 	}
 
-	public void choisirEtudiant(Student stu) 
+	public void choisirEtudiant(Etudiant stu) 
 	{
-		studentActif=stu;  
+		etudiantActif=stu;  
 	}
 
 	public void selectionEtudiant()
@@ -81,8 +87,8 @@ public class Joueur {
 
 
 		/*----Affichage des etudiants--------------*/
-		for (int i=0; i<tabStudent.length; i++)
-			System.out.println(i+1 +" : "+tabStudent[i].getDescription());
+		for (int i=0; i<tabEtudiant.length; i++)
+			System.out.println(i+1 +" : "+tabEtudiant[i].getDescription()+tabEtudiant[i].getQualifCaract());
 		/*----------------------------------------*/
 
 		/*---------Cin de l'utilisateur ------*/
@@ -90,31 +96,31 @@ public class Joueur {
 		int choix = in.nextInt();
 		/*---------Fin Cin de l'utilisateur ------*/
 
-		switch (choix)
+	/*	switch (choix)//?????????? a quoi ca sert deja ?
 		{ 
 		case 1: this.choisirEtudiant(unTC);
-		System.out.println("Felicitation, vous êtes un "+tabStudent[0].getDescription());
+		System.out.println("Felicitation, vous êtes un "+tabEtudiant[0].getDescription()+tabEtudiant[0].getQualifCaract());
 		break;
 
 		case 2:this.choisirEtudiant(unMaster);
-		System.out.println("Felicitation, vous êtes un "+tabStudent[1].getDescription());
+		System.out.println("Felicitation, vous êtes un "+tabEtudiant[1].getDescription()+tabEtudiant[1].getQualifCaract());
 		break;
 
 		case 3:this.choisirEtudiant(unLicense);
-		System.out.println("Felicitation, vous êtes un "+tabStudent[2].getDescription());
+		System.out.println("Felicitation, vous êtes un "+tabEtudiant[2].getDescription()+tabEtudiant[1].getQualifCaract());
 		break;
 
 		default: 
 			System.out.println("Le choix plante ...");
 
-		}
+		}*/
 
-		//Student tabStudent2[]=new Student[tabStudent.length-1];
+		//Student tabEtudiant2[]=new Student[tabEtudiant.length-1];
 		
-		tabStudent=Student.reorganiserTableau(tabStudent, choix);
+		tabEtudiant=Etudiant.reorganiserTableau(tabEtudiant, choix);
 
-		for(int i=0; i<tabStudent.length;i++)
-			System.out.println(tabStudent[i]);
+		for(int i=0; i<tabEtudiant.length;i++)
+			System.out.println(tabEtudiant[i]);
 
 	}
 

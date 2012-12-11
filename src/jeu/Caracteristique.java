@@ -1,18 +1,10 @@
 package jeu;
 
-public enum Caracteristique {
-	Pistone,
-	Geek,
-	PossedantUneVoiture,
-	AlcooliqueBDF,
-	SemestreSup,
-	Ae,
-	Philateliste,
-	Bds;
+public class Caracteristique {
 	
-	private String description = "";
+	protected String description;
 	
-	public String setDescription ()
+	public String getDescription ()
 	{
 		return this.description;
 	}
@@ -20,5 +12,6 @@ public enum Caracteristique {
 	{
 		this.description=des;	
 	}
+	
 	
 }

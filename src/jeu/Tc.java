@@ -6,8 +6,13 @@ public class Tc extends Etudiant {
 
 	public Tc()
 	{
+		
 		this.nombreDeHeures = 5;
+		this.description="Tc ";
+		
+	
 	}
+	
 	
 
 

@@ -1,5 +1,12 @@
 package jeu;
 
-public class Philateliste {
+public class Philateliste extends Caracteristique{
 
+
+	public Philateliste()
+	{
+
+		description=" philateliste.";
+	}
+	
 }

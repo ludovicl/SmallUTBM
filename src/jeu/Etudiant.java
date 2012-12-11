@@ -8,18 +8,26 @@ public class Etudiant {
 
 	private Caracteristique qualif;
 
-	private int nbHeures=10;
-
-	private String nomQualification;
-	private String description = "";
-	private String typeStudent;
-
-	public Etudiant() {
-	}
-
-	Etudiant(String typeStu)
+	public String getQualifCaract()
 	{
-		typeStudent=typeStu;
+		System.out.println("dans get Qualif caract");
+		return qualif.getDescription();
+		
+	}
+	
+
+
+	protected String nomQualification;
+	protected String description;
+	protected String typeStudent;
+	
+	//public Etudiant() {
+		
+	//}
+
+	public Etudiant()//String typeStu)
+	{
+		//typeStudent=typeStu;
 
 		/*--random entre 1 et 8---*/
 		int lower = 1;
@@ -29,42 +37,51 @@ public class Etudiant {
 
 		switch (random) 
 		{ 
-		case 1:qualif=Caracteristique.Geek;
-		nomQualification="Geek";
+		case 1:
+		Geek unGeek=new Geek();
+		qualif = unGeek;
 		break; 	
 
-		case 2:qualif=Caracteristique.Pistone;
-		nomQualification="pistone";
+		case 2:
+		Pistone unPistone=new Pistone();
+		qualif = unPistone;
 		break; 
 
-		case 3:qualif=Caracteristique.PossedantUneVoiture; 
-		nomQualification="possedant une voiture";
+		case 3:
+		PossedantVoiture possVoiture = new PossedantVoiture(); 
+		qualif = possVoiture;
 		break; 
 
 
-		case 4:qualif=Caracteristique.AlcooliqueBDF;
-		nomQualification="alcoolique du BDF";
+		case 4:
+		AlcooliqueBdf alcoBDF= new AlcooliqueBdf();
+		qualif=alcoBDF;
 		break;
 
-		case 5:qualif=Caracteristique.SemestreSup; 
-		nomQualification="possédant des semestres sup";
+		case 5:
+		SemestreSup semSup = new SemestreSup(); 
+		qualif = semSup;
 		break; 
 
-		case 6:qualif=Caracteristique.Ae;
-		nomQualification="faisant partie de l'AE";
+		case 6:
+		Ae assoEtudi=new Ae();
+		qualif=assoEtudi;
 		break; 
 
-		case 7:qualif=Caracteristique.Philateliste; 
-		nomQualification="philateliste";
+		case 7:
+		Philateliste unPhilateliste= new Philateliste(); 
+		qualif= unPhilateliste;
 		break; 
 
-		case 8:qualif=Caracteristique.Bds;
-		nomQualification="faisant partie du bureau des sport";
+		case 8:
+		Bds bureauSport = new Bds();
+		qualif = bureauSport;
 		break; 
 
 		}
+		//System.out.println("DANS ETUDIANT : "+description);
 
-		description=typeStudent+nomQualification;
+	//	description=typeStudent+qualif.getDescription();
 	}
 
 

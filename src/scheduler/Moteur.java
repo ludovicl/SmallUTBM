@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Scanner;
 
 import jeu.Tc;
-import jeu.Student;
 import environnement.TypeUv;
 import interaction.Joueur;
 
