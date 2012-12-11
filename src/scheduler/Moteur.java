@@ -32,8 +32,6 @@ public class Moteur {
 		j1 = new Joueur();
 		j2 = new Joueur();	
 
-
-
 		System.out.println("Saisire le nom du joueur1 :");	
 
 		/*---------Cin de l'utilisateur ------*/
@@ -87,6 +85,7 @@ public class Moteur {
 	public void choixEtudiants()
 	{
 		j1.selectionEtudiant();
+		
 		j2.selectionEtudiant();
 
 	}

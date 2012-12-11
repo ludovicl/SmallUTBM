@@ -22,15 +22,11 @@ public class Joueur {
 	private Student unPrepa = Student.Prepa;
 	private Student unDUT = Student.DUT;
 
-
-
 	/*-----------------------------*/
 
 	/*-------tableau d'étudiants disponibles----*/
 	static private Student[] tabStudent= new Student[6];
 	/*----Static car il doit être le même pour tout les joueurs---*/
-
-	
 	
 	
 	public Joueur()
