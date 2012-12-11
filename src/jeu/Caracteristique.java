@@ -1,6 +1,6 @@
 package jeu;
 
-public enum Qualification {
+public enum Caracteristique {
 	Pistone,
 	Geek,
 	PossedantUneVoiture,
