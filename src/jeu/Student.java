@@ -95,15 +95,12 @@ public enum Student {
 			System.out.println("all work !");
 		//	tab=newTab;
 		return   newTab;
-
-
 	} 
 	
 	public String getDescription ()
 	{
 		return this.description;
-	}
-	
+	}	
 	
 	private int nombreHeuresDeTravail=10;
 	

@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 import jeu.Tc;
 import jeu.Student;
-import environnement.Uv;
+import environnement.TypeUv;
 import interaction.Joueur;
 
 public class Moteur {
@@ -19,9 +19,9 @@ public class Moteur {
 	/*--------------------------*/
 
 	/*--------Creation des Uv --- */
-	private Uv tm1= Uv.TM;
-	private Uv cs1 = Uv.CS;
-	private Uv stage1 = Uv.Stage;
+	private TypeUv tm1= TypeUv.TM;
+	private TypeUv cs1 = TypeUv.CS;
+	private TypeUv stage1 = TypeUv.Stage;
 	/*------------------------------*/
 
 

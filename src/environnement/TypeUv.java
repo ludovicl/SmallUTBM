@@ -2,10 +2,12 @@ package environnement;
 
 import java.awt.geom.Point2D;
 
-public enum Uv 
+public enum TypeUv 
 {
 
-	TM(),
+	TM,
+	CG,
+	Langue,
 	CS,
 	Stage;
 	
