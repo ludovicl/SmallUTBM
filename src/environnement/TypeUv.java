@@ -30,14 +30,14 @@ public class TypeUv
 		return appartenance;
 	}
 	
-	public void setHeuresJ1(int para)
+	public void addHeuresJ1(int para)
 	{
-		heuresJ1=para;
+		heuresJ1+=para;
 	}
 	
-	public void setHeuresJ2(int para)
+	public void addHeuresJ2(int para)
 	{
-		heuresJ1=para;
+		heuresJ2+=para;
 	}
 	
 	public int gettHeuresJ1()

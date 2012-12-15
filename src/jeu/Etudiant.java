@@ -14,7 +14,7 @@ public class Etudiant {
 	}
 
 	protected int nombreDeHeures=5;
-	private static int rand;
+	private int rand;
 	private Caracteristique qualif;
 	protected String nomQualification;
 	protected String description;
@@ -84,14 +84,6 @@ public class Etudiant {
 	}
 
 
-	public void deplacerHeure()
-	{
-		if(nombreDeHeures > 0)
-			nombreDeHeures--;
-		else
-			System.out.println("Vous n'avez plus d'heures ?? d??placer sur cet ??tudiant");
-	}
-
 	public int getnombreDeHeures()
 	{
 		return nombreDeHeures;
@@ -130,18 +122,6 @@ public class Etudiant {
 	{
 		return this.description;
 	}	
-
-	private int nombreHeuresDeTravail=10;
-
-	public int getNombreHeursDeTravail()
-	{
-		return nombreHeuresDeTravail;
-	}
-
-	public void setNombreHeursDeTravai(int h)
-	{
-		nombreHeuresDeTravail=h;
-	}
 
 	public void deplacerHeures(int nbH, TypeUv uv)
 	{

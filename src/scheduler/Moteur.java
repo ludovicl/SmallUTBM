@@ -121,26 +121,96 @@ public class Moteur {
 
 
 	public void choixUv()
-	{
-
-		while (j1.etudiantActif.getNombreHeursDeTravail()!=0)
+	{			
+		while (j1.etudiantActif.getnombreDeHeures()>0)
 		{
-
-
+			System.out.println(j2.getNomJoueur()+" vous avez "+j2.getEtudiantActif().getnombreDeHeures()+" heures de travail");
 			System.out.println("-----"+j1.getNomJoueur()+" vous pouvez maintenant deplacer vos heurs de travail-----");
-
 			System.out.println(j1.getNomJoueur()+" vous avez "+j1.getEtudiantActif().getnombreDeHeures()+" heures de travail");
-
 			System.out.println("Voici les uv : ");
-
 			System.out.println("1. : "+tm1.getNomUv()+" X : "+tm1.getCoordonneesX()+" Y : "+tm1.getCoordonneesY());
-			System.out.println("Heures pour joueurs 1 :"+tm1.gettHeuresJ1()+"Heures pour joueur 2 :"+tm1.gettHeuresJ2());
+			System.out.println("Heures pour joueurs 1 : "+tm1.gettHeuresJ1()+" Heures pour joueur 2 : "+tm1.gettHeuresJ2());
+			System.out.println();
+			System.out.println("2. : "+cs1.getNomUv()+" X : "+cs1.getCoordonneesX()+" Y : "+cs1.getCoordonneesY());
+			System.out.println("Heures pour joueurs 1 : "+cs1.gettHeuresJ1()+" Heures pour joueur 2 : "+cs1.gettHeuresJ2());
+			System.out.println();
+			System.out.println("3. : "+stage1.getNomUv()+" X : "+stage1.getCoordonneesX()+" Y : "+stage1.getCoordonneesY());
+			System.out.println("Heures pour joueurs 1 : "+stage1.gettHeuresJ1()+" Heures pour joueur 2 : "+stage1.gettHeuresJ2());
 			System.out.println();
 
+
+			System.out.println("Selectionnez le nombre d'heure à deplacer :");
+
+
+			/*---------Cin de l'utilisateur ------*/
+			Scanner in1 = new Scanner(System.in);
+			int choixHeures = in1.nextInt();
+			/*---------Fin Cin de l'utilisateur ------*/
+
+			System.out.println("Selectionnez votre uv : ");
+
+			/*---------Cin de l'utilisateur ------*/
+			Scanner in2 = new Scanner(System.in);
+			int choixUv = in2.nextInt();
+			/*---------Fin Cin de l'utilisateur ------*/
+
+		
+			if (choixHeures<=j1.getEtudiantActif().getnombreDeHeures())
+			{
+				System.out.println("On est dans le switch");
+				switch (choixUv) {
+				case 1:
+					tm1.addHeuresJ1(choixHeures);
+					j1.getEtudiantActif().decrementerHeures(choixHeures);
+
+					if(tm1.gettHeuresJ1()>tm1.gettHeuresJ2())
+						tm1.setAppartenance(j1.getEtudiantActif());
+					else if (tm1.gettHeuresJ1()==tm1.gettHeuresJ2())
+						System.out.println("On va lancer les Dès !");
+
+					break;
+
+				case 2:
+					cs1.addHeuresJ1(choixHeures);
+					j1.getEtudiantActif().decrementerHeures(choixHeures);
+					if(cs1.gettHeuresJ1()>cs1.gettHeuresJ2())
+						cs1.setAppartenance(j1.getEtudiantActif());
+					else if (cs1.gettHeuresJ1()==cs1.gettHeuresJ2())
+						System.out.println("On va lancer les Dès !");
+					break;
+
+				case 3:
+					stage1.addHeuresJ1(choixHeures);
+					j1.getEtudiantActif().decrementerHeures(choixHeures);
+					if(stage1.gettHeuresJ1()>tm1.gettHeuresJ2())
+						tm1.setAppartenance(j1.getEtudiantActif());
+					else if (stage1.gettHeuresJ1()==stage1.gettHeuresJ2())
+						System.out.println("On va lancer les Dès !");
+
+					break;
+				default:
+					break;
+				}
+			}
+			else
+				System.out.println("Vous n'avez plus assez d'heures!");
+			System.out.println(j2.getNomJoueur()+" vous avez "+j2.getEtudiantActif().getnombreDeHeures()+" heures de travail");
+
+		}
+
+
+		while (j2.etudiantActif.getnombreDeHeures()>0)// tant que le joueur à des heures a distribuer
+		{
+
+			System.out.println("-----"+j2.getNomJoueur()+" vous pouvez maintenant deplacer vos heurs de travail-----");
+			System.out.println(j2.getNomJoueur()+" vous avez "+j2.getEtudiantActif().getnombreDeHeures()+" heures de travail");
+			System.out.println("Voici les uv : ");
+			System.out.println("1. : "+tm1.getNomUv()+" X : "+tm1.getCoordonneesX()+" Y : "+tm1.getCoordonneesY());
+			System.out.println("Heures pour joueurs 1 :"+tm1.gettHeuresJ1()+" Heures pour joueur 2 :"+tm1.gettHeuresJ2());
+			System.out.println();
 			System.out.println("2. : "+cs1.getNomUv()+" X : "+cs1.getCoordonneesX()+" Y : "+cs1.getCoordonneesY());
 			System.out.println("Heures pour joueurs 1 : "+cs1.gettHeuresJ1()+" Heures pour joueur 2 :"+cs1.gettHeuresJ2());
 			System.out.println();
-
 			System.out.println("3. : "+stage1.getNomUv()+" X : "+stage1.getCoordonneesX()+" Y : "+stage1.getCoordonneesY());
 			System.out.println("Heures pour joueurs 1 : "+stage1.gettHeuresJ1()+" Heures pour joueur 2 :"+stage1.gettHeuresJ2());
 			System.out.println();
@@ -154,7 +224,6 @@ public class Moteur {
 			int choixHeures = in1.nextInt();
 			/*---------Fin Cin de l'utilisateur ------*/
 
-			j1.getEtudiantActif().decrementerHeures(choixHeures);
 
 			System.out.println("Selectionnez votre uv : ");
 
@@ -162,33 +231,45 @@ public class Moteur {
 			Scanner in2 = new Scanner(System.in);
 			int choixUv = in2.nextInt();
 			/*---------Fin Cin de l'utilisateur ------*/
+			
+			
+			System.out.println("Vous avez choisi de placer "+ choixHeures);
+			if (choixHeures<=j2.getEtudiantActif().getnombreDeHeures())
+			{
+				switch (choixUv) {
+				case 1:
+					tm1.addHeuresJ2(choixHeures);
+					j2.getEtudiantActif().decrementerHeures(choixHeures);
+					if(tm1.gettHeuresJ2()>tm1.gettHeuresJ1())
+						tm1.setAppartenance(j2.getEtudiantActif());
+					else if (tm1.gettHeuresJ1()==tm1.gettHeuresJ2())
+						System.out.println("On va lancer les Dès !");
 
-			switch (choixUv) {
-			case 1:
-				tm1.setHeuresJ1(choixHeures);
-				if(tm1.gettHeuresJ1()>tm1.gettHeuresJ2())
-				tm1.setAppartenance(j1.getEtudiantActif());
-				else if (tm1.gettHeuresJ1()==tm1.gettHeuresJ2())
-					System.out.println("On va lancer les Dès !");
-					
-				break;
+					break;
 
-			case 2:
-				cs1.setHeuresJ1(choixHeures);
-				break;
+				case 2:
+					cs1.addHeuresJ2(choixHeures);
+					j2.getEtudiantActif().decrementerHeures(choixHeures);
 
-			case 3:
-				stage1.setHeuresJ1(choixHeures);
-				break;
-			default:
-				break;
+					if(cs1.gettHeuresJ2()>cs1.gettHeuresJ1())
+						cs1.setAppartenance(j2.getEtudiantActif());
+					else if (cs1.gettHeuresJ1()==cs1.gettHeuresJ2())
+						System.out.println("On va lancer les Dès !");
+					break;
+
+				case 3:
+					stage1.addHeuresJ2(choixHeures);
+					j2.getEtudiantActif().decrementerHeures(choixHeures);
+					if(stage1.gettHeuresJ2()>tm1.gettHeuresJ1())
+						tm1.setAppartenance(j2.getEtudiantActif());
+					else if (stage1.gettHeuresJ1()==stage1.gettHeuresJ2())
+						System.out.println("On va lancer les Dès !");
+					break;
+				default:
+					break;
+				}
 			}
-			
-			
-			
 		}
-
-
 		//j1.deplacerHeures(choixHeures, );
 
 
@@ -196,7 +277,7 @@ public class Moteur {
 
 
 
-		System.out.println(j2.getNomJoueur()+" veuilliez deplacer vos heures de travail");
+		//	System.out.println(j2.getNomJoueur()+" veuilliez deplacer vos heures de travail");
 
 	}
 

@@ -30,8 +30,7 @@ public class Joueur {
 	/*-----------------------------*/
 
 	/*-------tableau d'étudiants disponibles----*/
-	static private Etudiant[] tabEtudiant= new Etudiant[6];
-	/*----Static car il doit être le même pour tout les joueurs---*/
+	private Etudiant[] tabEtudiant= new Etudiant[6];
 	
 	
 	public Joueur() //creation tableau Etudiant dans le constructeur
