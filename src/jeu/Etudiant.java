@@ -3,6 +3,8 @@ package jeu;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import environnement.TypeUv;
+
 public class Etudiant {
 
 
@@ -11,35 +13,29 @@ public class Etudiant {
 		return  (int)(Math.random() * (max-min)) + min;
 	}
 
-	protected int nombreDeHeures;
-
+	protected int nombreDeHeures=5;
 	private static int rand;
 	private Caracteristique qualif;
+	protected String nomQualification;
+	protected String description;
+	protected String typeStudent;
 
-	// à implementer pour ne pas random 2 fois le même nombre
+	
+	// à implementer
 	private static ArrayList<Integer> listRandom= new ArrayList<Integer>(8);
 
 	public String getQualifCaract()
 	{
-	//	System.out.println("dans get Qualif caract");
 		return qualif.getDescription();
 
 	}
 
 
-
-	protected String nomQualification;
-	protected String description;
-	protected String typeStudent;
-
-	//public Etudiant() {
-
-	//}
-
 	public Etudiant()
 	{
 		rand = random(1,8);// effectuer un random en 1 et 8
-		
+
+
 		switch (rand) 
 		{ 
 		case 1:
@@ -101,14 +97,14 @@ public class Etudiant {
 		return nombreDeHeures;
 	}
 
-	public void decrementerHeures()
+	public void decrementerHeures(int h)
 	{
-		nombreDeHeures--;
+		nombreDeHeures=nombreDeHeures-h;
 	}
 
-	public void incrementerHeures()
+	public void incrementerHeures(int h)
 	{
-		nombreDeHeures++;
+		nombreDeHeures+=h;
 	}
 
 
@@ -119,15 +115,14 @@ public class Etudiant {
 		//recopie tout les element de tab dans newTab sauf l'index
 		for(int i=0; i<index-1; i++)//on va de 0 à index-1
 		{
-			//System.out.println("work 1 !------"+ i);
 			newTab[i]=tab[i];
 		}	
 
 		for(int i=index-1; i<tab.length-1; i++)
 		{
-			//System.out.println("work 2 ! -----"+(i-index+1) );
 			newTab[i]=tab[i+1];
 		}
+		
 		return   newTab;
 	} 
 
@@ -148,6 +143,11 @@ public class Etudiant {
 		nombreHeuresDeTravail=h;
 	}
 
+	public void deplacerHeures(int nbH, TypeUv uv)
+	{
+		
+	}
+	
 
 }
 

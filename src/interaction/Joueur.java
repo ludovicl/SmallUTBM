@@ -27,7 +27,6 @@ public class Joueur {
 	private Etranger unEtranger = new Etranger();
 	private Prepa unPrepa = new Prepa();
 	private Dut unDUT = new Dut();
-
 	/*-----------------------------*/
 
 	/*-------tableau d'étudiants disponibles----*/
@@ -35,7 +34,7 @@ public class Joueur {
 	/*----Static car il doit être le même pour tout les joueurs---*/
 	
 	
-	public Joueur()
+	public Joueur() //creation tableau Etudiant dans le constructeur
 	{
 		tabEtudiant[0]=unTC;	
 		tabEtudiant[1]=unMaster;
@@ -61,10 +60,7 @@ public class Joueur {
 
 	}
 
-	public void deplacerHeures() 
-	{
-
-	}
+	
 
 	public void lancerDe() 
 	{
@@ -81,28 +77,35 @@ public class Joueur {
 		etudiantActif=stu;  
 	}
 
-	public void selectionEtudiant()
+	
+	public void selectionEtudiant(int choix, Etudiant etu)
 	{
-		System.out.println(nomJoueur+" vous avez le choix entre : ");			
-
-
-		/*----Affichage des etudiants--------------*/
-		for (int i=0; i<tabEtudiant.length; i++)
-			System.out.println(i+1 +" : "+tabEtudiant[i].getDescription()+tabEtudiant[i].getQualifCaract());
-		/*----------------------------------------*/
-
-		/*---------Cin de l'utilisateur ------*/
-		Scanner in = new Scanner(System.in);
-		int choix = in.nextInt();
-		/*---------Fin Cin de l'utilisateur ------*/
-
-
 		
+		etudiantActif=etu;
+
 		tabEtudiant=Etudiant.reorganiserTableau(tabEtudiant, choix);
 
-		//for(int i=0; i<tabEtudiant.length;i++)
-			//System.out.println(tabEtudiant[i]);
-
+	}
+	
+	public Etudiant getEtudiantActif ()
+	{
+		return etudiantActif;
+	}
+	
+	public Etudiant getEtudiantEnDeclin ()
+	{
+		return etudiantEnDeclin;
+	}
+	
+	public Etudiant[] getTabEtudiant()
+	{
+		return tabEtudiant;
 	}
 
+	public Etudiant getTabEtudiantIndex(int i)
+	{
+		return tabEtudiant[i];
+
+	}
+	
 }
