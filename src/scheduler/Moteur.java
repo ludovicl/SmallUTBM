@@ -10,6 +10,8 @@ import jeu.Tc;
 import environnement.TypeUv;
 import interaction.Joueur;
 
+
+
 public class Moteur {
 
 
@@ -83,66 +85,10 @@ public class Moteur {
 
 	public void choixEtudiants()
 	{
-		j1.selectionEtudiant();
-		
+		j1.selectionEtudiant();		
 		j2.selectionEtudiant();
 
 	}
-
-	/*
-	private Tc  tc;
-	private int tempo;
-
-	private int nbJoueurs;
-
-
-
-	  public void decrementerEtudiant(String etu)
-	  {
-		  if (etu=="tc")
-		  	tc.decrementerHeures();
-
-	  }
-
-	  public void incrementerEtudiant(String etu)
-	  {
-		  tc.incrementerHeures();
-	  }
-
-
-
-	  public int getNombreHeures(String etu)
-	  {
-		  if(etu=="tc")
-		  {
-
-			  return tc.getnombreDeHeures();
-		  }
-		  else 
-			 return 0; //inutile mais il veut un else...
-	  }
-
-
-	  public Moteur () {
-		  tc = new Tc();
-	  }
-
-	  public void genererCarte() {
-	  }
-
-	  public void compterCredits() {
-	  }
-
-	  public void verifierUV() {
-
-	  }
-
-	  public void debuterPartie() {
-
-	  }
-
-	 */
-
 
 
 }

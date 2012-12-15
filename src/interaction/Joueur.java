@@ -96,31 +96,12 @@ public class Joueur {
 		int choix = in.nextInt();
 		/*---------Fin Cin de l'utilisateur ------*/
 
-	/*	switch (choix)//?????????? a quoi ca sert deja ?
-		{ 
-		case 1: this.choisirEtudiant(unTC);
-		System.out.println("Felicitation, vous êtes un "+tabEtudiant[0].getDescription()+tabEtudiant[0].getQualifCaract());
-		break;
 
-		case 2:this.choisirEtudiant(unMaster);
-		System.out.println("Felicitation, vous êtes un "+tabEtudiant[1].getDescription()+tabEtudiant[1].getQualifCaract());
-		break;
-
-		case 3:this.choisirEtudiant(unLicense);
-		System.out.println("Felicitation, vous êtes un "+tabEtudiant[2].getDescription()+tabEtudiant[1].getQualifCaract());
-		break;
-
-		default: 
-			System.out.println("Le choix plante ...");
-
-		}*/
-
-		//Student tabEtudiant2[]=new Student[tabEtudiant.length-1];
 		
 		tabEtudiant=Etudiant.reorganiserTableau(tabEtudiant, choix);
 
-		for(int i=0; i<tabEtudiant.length;i++)
-			System.out.println(tabEtudiant[i]);
+		//for(int i=0; i<tabEtudiant.length;i++)
+			//System.out.println(tabEtudiant[i]);
 
 	}
 
