@@ -100,7 +100,7 @@ public class Etudiant {
 	}
 
 
-	public static Etudiant[] reorganiserTableau(Etudiant tab[],int index)
+	public static  Etudiant[] reorganiserTableau(Etudiant tab[],int index)
 	{	
 		Etudiant newTab[]=new Etudiant[tab.length-1];//creation d'un nouveau tableau
 

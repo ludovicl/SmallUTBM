@@ -13,12 +13,13 @@ import jeu.Tc;
 public class Joueur {
 
 
-	private int nbCredit;
+	private int nbCredit=5;
 	private String nomJoueur;
 
 
 	public Etudiant etudiantEnDeclin;
 	public Etudiant etudiantActif;
+
 
 	/*--Creation des Students----*/
 	private Tc unTC = new Tc();
@@ -29,10 +30,19 @@ public class Joueur {
 	private Dut unDUT = new Dut();
 	/*-----------------------------*/
 
-	/*-------tableau d'étudiants disponibles----*/
-	private Etudiant[] tabEtudiant= new Etudiant[6];
-	
-	
+	/*-------tableau d'étudiants disponibles static car le même pour tout les etudiant----*/
+	private static Etudiant[] tabEtudiant= new Etudiant[6];
+
+	public int getNbCredit()
+	{
+		return nbCredit;
+	}
+
+	public void setNbCredit(int cred)
+	{
+		nbCredit=cred;
+	}
+
 	public Joueur() //creation tableau Etudiant dans le constructeur
 	{
 		tabEtudiant[0]=unTC;	
@@ -41,6 +51,16 @@ public class Joueur {
 		tabEtudiant[3]=unPrepa;
 		tabEtudiant[4]=unDUT;
 		tabEtudiant[5]=unLicense;
+	}
+
+	public void decrementerNbCredit(int nb)
+	{
+		nbCredit=nbCredit-nb;
+	}
+
+	public void incrementerNbCredit(int nb)
+	{
+		nbCredit=nbCredit+nb;
 	}
 
 	public void setNomJoueur (String nom)
@@ -59,7 +79,7 @@ public class Joueur {
 
 	}
 
-	
+
 
 	public void lancerDe() 
 	{
@@ -76,26 +96,24 @@ public class Joueur {
 		etudiantActif=stu;  
 	}
 
-	
+
 	public void selectionEtudiant(int choix, Etudiant etu)
 	{
-		
 		etudiantActif=etu;
-
-		tabEtudiant=Etudiant.reorganiserTableau(tabEtudiant, choix);
-
+		this.decrementerNbCredit(choix);
+		tabEtudiant=Etudiant.reorganiserTableau(tabEtudiant, choix);	
 	}
-	
+
 	public Etudiant getEtudiantActif ()
 	{
 		return etudiantActif;
 	}
-	
+
 	public Etudiant getEtudiantEnDeclin ()
 	{
 		return etudiantEnDeclin;
 	}
-	
+
 	public Etudiant[] getTabEtudiant()
 	{
 		return tabEtudiant;
@@ -106,5 +124,5 @@ public class Joueur {
 		return tabEtudiant[i];
 
 	}
-	
+
 }

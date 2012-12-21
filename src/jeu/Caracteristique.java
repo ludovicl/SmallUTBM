@@ -12,6 +12,5 @@ public class Caracteristique {
 	{
 		this.description=des;	
 	}
-	
-	
+		
 }
