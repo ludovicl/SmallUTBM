@@ -243,6 +243,42 @@ public class Moteur {
 		}
 	}
 
+	
+	public void finTour()
+	{
+		if(tm1.gettAppartenance()==j1.getEtudiantActif()) // si tm1 appartien à un etudiant du joueur 1
+		{
+			j1.incrementerNbCredit(1); // increment le credit de joueur 1 de 1;
+		}
+		else if (tm1.gettAppartenance()==j2.getEtudiantActif())
+		{
+			j2.incrementerNbCredit(1);
+		}
+		else 
+			System.out.println(tm1+" n'appartien à aucun joueur");
+		
+		if(cs1.gettAppartenance()==j1.getEtudiantActif()) // si 1 appartien à un etudiant du joueur 1
+		{
+			j1.incrementerNbCredit(1); // increment le credit de joueur 1 de 1;
+		}
+		else if (cs1.gettAppartenance()==j2.getEtudiantActif())
+		{
+			j2.incrementerNbCredit(1);
+		}
+		else 
+			System.out.println(cs1+" n'appartien à aucun joueur");
+		
+		if(stage1.gettAppartenance()==j1.getEtudiantActif()) // si tm1 appartien à un etudiant du joueur 1
+		{
+			j1.incrementerNbCredit(1); // increment le credit de joueur 1 de 1;
+		}
+		else if (stage1.gettAppartenance()==j2.getEtudiantActif())
+		{
+			j2.incrementerNbCredit(1);
+		}
+		else 
+			System.out.println(tm1+" n'appartien à aucun joueur");
+	}
 
 	public void choixNouveauEtudiant()
 	{
@@ -257,7 +293,6 @@ public class Moteur {
 		{
 
 		}
-
 
 
 	}

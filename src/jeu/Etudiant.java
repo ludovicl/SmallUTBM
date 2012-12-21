@@ -1,7 +1,6 @@
 package jeu;
 
 import java.util.ArrayList;
-import java.util.Vector;
 
 import environnement.TypeUv;
 
@@ -19,10 +18,6 @@ public class Etudiant {
 	protected String nomQualification;
 	protected String description;
 	protected String typeStudent;
-
-	
-	// à implementer
-	private static ArrayList<Integer> listRandom= new ArrayList<Integer>(8);
 
 	public String getQualifCaract()
 	{
@@ -114,7 +109,7 @@ public class Etudiant {
 		{
 			newTab[i]=tab[i+1];
 		}
-		
+
 		return   newTab;
 	} 
 
@@ -125,9 +120,9 @@ public class Etudiant {
 
 	public void deplacerHeures(int nbH, TypeUv uv)
 	{
-		
+
 	}
-	
+
 
 }
 

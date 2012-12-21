@@ -9,6 +9,4 @@ public class Etranger extends Etudiant {
 		this.description="Etranger ";
 	}
 	
-	
-	
 }
