@@ -15,16 +15,15 @@ import interaction.Joueur;
 public class Moteur {
 
 
-	/*---Creation des Joueurs--*/
-	static private Joueur j1, j2;
+	/*---Creation des Joueurs   j est un object intermediaire et n'est pas utilisé--*/
+	private Joueur j1, j2, j;
 	/*--------------------------*/
 
 	/*--------Creation des Uv --- */
-	private TypeUv tm1= new TypeUv("tm1");
-	private TypeUv cs1= new TypeUv("cs1");
-	private TypeUv stage1= new TypeUv("stage1");
+	private static TypeUv tm1= new TypeUv("tm1");
+	private static TypeUv cs1= new TypeUv("cs1");
+	private static TypeUv stage1= new TypeUv("stage1");
 	/*------------------------------*/
-	private Joueur j ;
 
 
 
@@ -52,7 +51,7 @@ public class Moteur {
 
 		j1.setNomJoueur(nomj1);
 
-		System.out.println("Le nom du joueur 1 est : "+j1.getNomJoueur());		
+		System.out.println("Le nom du joueur 1 est : "+j1.getNomJoueur() +" Il a : "+j1.getNbCredit()+ "credits");		
 		System.out.println("Saisire le nom du joueur2 :");
 
 
@@ -67,7 +66,7 @@ public class Moteur {
 		/*---------Fin Cin de l'utilisateur ------*/
 
 		j2.setNomJoueur(nomj2);
-		System.out.println("Le nom du joueur 2 est : "+j2.getNomJoueur());
+		System.out.println("Le nom du joueur 2 est : "+j2.getNomJoueur()+" Il a : "+j2.getNbCredit()+" credits ");
 
 	}
 
@@ -100,10 +99,10 @@ public class Moteur {
 		/*---------Fin Cin de l'utilisateur ------*/
 
 
-		System.out.println(j1.getNbCredit());
+		//System.out.println(j1.getNbCredit());
 
-		/*---Si le nombre de credit du joueur est superieur au credit de l'étudiant---*/
-		if(j1.getNbCredit()>choix)
+		/*---Si le nombre de credit du joueur est superieur au prix en credits de l'étudiant---*/
+		if(j1.getNbCredit()>=choix)
 		{
 			j1.selectionEtudiant(choix,j1.getTabEtudiantIndex(choix));
 			j1.decrementerNbCredit(choix);
@@ -114,6 +113,8 @@ public class Moteur {
 		{
 			System.out.println("Vous n'avez pas assez de credit pour cet etudiant");
 		}
+
+
 
 		/*----Affichage des etudiants selectionable--------------*/
 		for (int i=0; i<j2.getTabEtudiant().length; i++)
@@ -126,18 +127,17 @@ public class Moteur {
 		/*---------Fin Cin de l'utilisateur ------*/
 		System.out.println(j2.getNbCredit());
 
-		if(j2.getNbCredit()>choix1)
+		if(j2.getNbCredit()>=choix1)
 		{
 			j2.selectionEtudiant(choix,j2.getTabEtudiantIndex(choix1));
 			j2.decrementerNbCredit(choix);
 			System.out.println("Vous êtes maintenant un "+j2.getEtudiantActif().getDescription()+j2.getEtudiantActif().getQualifCaract());
-			System.out.println(j2.getNomJoueur()+" vous avez"+j2.getNbCredit()+" credit");
+			System.out.println(j2.getNomJoueur()+" vous avez "+j2.getNbCredit()+" credit");
 		}
 		else
 		{
 			System.out.println("Vous n'avez pas assez de credit pour cet etudiant");
 		}
-
 
 	}
 
@@ -151,7 +151,6 @@ public class Moteur {
 		else if (para =="j2")
 		{
 			j=j2;
-
 		}
 
 		while (j.etudiantActif.getnombreDeHeures()>0)// tant que le joueur à des credits
@@ -188,13 +187,13 @@ public class Moteur {
 
 			if (choixHeures<=j.getEtudiantActif().getnombreDeHeures())
 			{
-				System.out.println("On est dans le switch");
 				switch (choixUv) {
 				case 1:
 					if(para=="j1")
 						tm1.addHeuresJ1(choixHeures);
 					else if (para =="j2")
 						tm1.addHeuresJ2(choixHeures);
+					
 					j.getEtudiantActif().decrementerHeures(choixHeures);
 					
 					if(tm1.gettHeuresJ1()>tm1.gettHeuresJ2())
@@ -210,7 +209,9 @@ public class Moteur {
 						cs1.addHeuresJ1(choixHeures);
 					else if (para =="j2")
 						cs1.addHeuresJ2(choixHeures);
+					
 					j.getEtudiantActif().decrementerHeures(choixHeures);
+					
 					if(cs1.gettHeuresJ1()>cs1.gettHeuresJ2())
 						cs1.setAppartenance(j1.getEtudiantActif());
 					else if(cs1.gettHeuresJ2()>cs1.gettHeuresJ1())
@@ -241,48 +242,116 @@ public class Moteur {
 			System.out.println(j2.getNomJoueur()+" vous avez "+j2.getEtudiantActif().getnombreDeHeures()+" heures de travail");
 
 		}
+
+		if (para == "j1")
+		{
+			j1=j;
+		}
+		else if (para =="j2")
+		{
+			j2=j;
+		}
 	}
 
-	
-	public void finTour()
+
+	public void finTour()// methode verifiant l'appartenance des uv
 	{
-		if(tm1.gettAppartenance()==j1.getEtudiantActif()) // si tm1 appartien à un etudiant du joueur 1
+		if(tm1.gettAppartenance()==j1.getEtudiantActif()) // si tm1 appartient à un etudiant du joueur 1
 		{
-			j1.incrementerNbCredit(1); // increment le credit de joueur 1 de 1;
+			j1.incrementerNbCredit(1); // incremente le credit de joueur 1 de 1;
+			System.out.println("L'UV "+ tm1.getNomUv()+" appartient à "+j1.getNomJoueur()+" qui est un "
+					+j1.getEtudiantActif().getDescription()+j1.getEtudiantActif().getQualifCaract());
+
+			//redonne les heures à joueur 1 moins 1h
+			j1.getEtudiantActif().incrementerHeures(tm1.gettHeuresJ1()-1);
+
+			// laisse 1h par uv
+			tm1.setHeuresJ1(1);
+
 		}
 		else if (tm1.gettAppartenance()==j2.getEtudiantActif())
 		{
 			j2.incrementerNbCredit(1);
+			System.out.println("L'UV "+ tm1.getNomUv()+" appartient à "+j2.getNomJoueur()+" qui est un "
+					+j2.getEtudiantActif().getDescription()+j2.getEtudiantActif().getQualifCaract());
+			//redonne les heures à joueur 1 moins 1h
+			j2.getEtudiantActif().incrementerHeures(tm1.gettHeuresJ2()-1);
+
+			// laisse 1h par uv
+			tm1.setHeuresJ2(1);
 		}
 		else 
-			System.out.println(tm1+" n'appartien à aucun joueur");
-		
-		if(cs1.gettAppartenance()==j1.getEtudiantActif()) // si 1 appartien à un etudiant du joueur 1
+			System.out.println(tm1.getNomUv()+" n'appartien à aucun joueur");
+
+
+		if(cs1.gettAppartenance()==j1.getEtudiantActif()) // si cs1 appartient à un etudiant du joueur 1
 		{
 			j1.incrementerNbCredit(1); // increment le credit de joueur 1 de 1;
+			System.out.println("L'UV "+ cs1.getNomUv()+" appartient à "+j1.getNomJoueur()+" qui est un "
+					+j1.getEtudiantActif().getDescription()+j1.getEtudiantActif().getQualifCaract());
+			
+			//redonne les heures à joueur 1 moins 1h
+			j1.getEtudiantActif().incrementerHeures(cs1.gettHeuresJ1()-1);
+
+			// laisse 1h par uv
+			cs1.setHeuresJ1(1);
 		}
 		else if (cs1.gettAppartenance()==j2.getEtudiantActif())
 		{
 			j2.incrementerNbCredit(1);
+			System.out.println("L'UV "+ cs1.getNomUv()+" appartient à "+j2.getNomJoueur()+" qui est un "
+					+j2.getEtudiantActif().getDescription()+j2.getEtudiantActif().getQualifCaract());
+			//redonne les heures à joueur 1 moins 1h
+			j2.getEtudiantActif().incrementerHeures(cs1.gettHeuresJ2()-1);
+
+			// laisse 1h par uv
+			cs1.setHeuresJ2(1);
 		}
 		else 
-			System.out.println(cs1+" n'appartien à aucun joueur");
-		
-		if(stage1.gettAppartenance()==j1.getEtudiantActif()) // si tm1 appartien à un etudiant du joueur 1
+			System.out.println(cs1.getNomUv()+" n'appartien à aucun joueur");
+
+
+		if(stage1.gettAppartenance()==j1.getEtudiantActif()) // sis stage1 appartient à un etudiant du joueur 1
 		{
 			j1.incrementerNbCredit(1); // increment le credit de joueur 1 de 1;
+			System.out.println("L'UV "+ stage1.getNomUv()+" appartient à "+j1.getNomJoueur()+" qui est un "
+					+j1.getEtudiantActif().getDescription()+j1.getEtudiantActif().getQualifCaract());
+			//redonne les heures à joueur 1 moins 1h
+			j1.getEtudiantActif().incrementerHeures(stage1.gettHeuresJ1()-1);
+			
+			// laisse 1h par uv
+			stage1.setHeuresJ1(1);
 		}
 		else if (stage1.gettAppartenance()==j2.getEtudiantActif())
 		{
 			j2.incrementerNbCredit(1);
+			System.out.println("L'UV "+ stage1.getNomUv()+" appartient à "+j2.getNomJoueur()+" qui est un "
+					+j2.getEtudiantActif().getDescription()+j2.getEtudiantActif().getQualifCaract());
+			
+			//redonne les heures à joueur 1 moins 1h
+			j2.getEtudiantActif().incrementerHeures(stage1.gettHeuresJ2()-1);
+			
+			// laisse 1h par uv
+			stage1.setHeuresJ2(1);
 		}
 		else 
-			System.out.println(tm1+" n'appartien à aucun joueur");
+			System.out.println(stage1.getNomUv()+" n'appartien à aucun joueur");
+
 	}
 
-	public void choixNouveauEtudiant()
+
+
+	public void choixNouveauEtudiant(String s)
 	{
-		System.out.println("Vous les vous choisir une nouvel etudiant ? Y/N ");
+		if (s == "j1")
+		{
+			j=j1;
+		}
+		else if (s =="j2")
+		{
+			j=j2;
+		}
+		System.out.println(j.getNomJoueur()+ "Voulez-vous choisir une nouvel etudiant ? Y/N ");
 
 		/*---------Cin de l'utilisateur ------*/
 		Scanner in1 = new Scanner(System.in);
@@ -291,9 +360,17 @@ public class Moteur {
 
 		if (choixYN == "y" || choixYN == "Y")
 		{
+			System.out.println("Vous pouvez selectionner un nouvel etudiant ");
+			/*----Affichage des etudiants selectionable--------------*/
+			for (int i=0; i<j2.getTabEtudiant().length; i++)
+				System.out.println(i+1 +" : "+j2.getTabEtudiantIndex(i).getDescription()+j2.getTabEtudiantIndex(i).getQualifCaract());
 
+			/*---------Cin de l'utilisateur ------*/
+			Scanner in11 = new Scanner(System.in);
+			int choix1 = in11.nextInt();
+			/*---------Fin Cin de l'utilisateur ------*/
+			System.out.println(j2.getNbCredit());
 		}
-
 
 	}
 

@@ -100,7 +100,6 @@ public class Joueur {
 	public void selectionEtudiant(int choix, Etudiant etu)
 	{
 		etudiantActif=etu;
-		this.decrementerNbCredit(choix);
 		tabEtudiant=Etudiant.reorganiserTableau(tabEtudiant, choix);	
 	}
 

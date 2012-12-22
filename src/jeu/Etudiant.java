@@ -97,7 +97,7 @@ public class Etudiant {
 
 	public static  Etudiant[] reorganiserTableau(Etudiant tab[],int index)
 	{	
-		Etudiant newTab[]=new Etudiant[tab.length-1];//creation d'un nouveau tableau
+		Etudiant newTab[]=new Etudiant[tab.length-1];//creation d'un nouveau tableau -1
 
 		//recopie tout les element de tab dans newTab sauf l'index
 		for(int i=0; i<index-1; i++)//on va de 0 à index-1
@@ -109,7 +109,7 @@ public class Etudiant {
 		{
 			newTab[i]=tab[i+1];
 		}
-
+		
 		return   newTab;
 	} 
 
@@ -118,10 +118,7 @@ public class Etudiant {
 		return this.description;
 	}	
 
-	public void deplacerHeures(int nbH, TypeUv uv)
-	{
-
-	}
+	
 
 
 }

@@ -6,6 +6,7 @@ public class TypeUv
 {
 		
 	private int coordonneesX,coordonneesY;
+	
 	private Etudiant appartenance;
 	private int heuresJ1, heuresJ2;
 	protected String nomUv;
@@ -50,7 +51,15 @@ public class TypeUv
 		return heuresJ2;
 	}
 	
+	public void setHeuresJ1(int n)
+	{
+		heuresJ1=n;
+	}
 	
+	public void setHeuresJ2(int n)
+	{
+		heuresJ2=n;
+	}
 	public void setCoordonnees(int x, int y)
 	{		
 		this.coordonneesX=x;
@@ -67,7 +76,6 @@ public class TypeUv
 	{
 		return this.coordonneesY;
 	}
-	
 	
 	
 	
