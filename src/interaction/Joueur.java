@@ -2,13 +2,7 @@ package interaction;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import jeu.Dut;
-import jeu.Etranger;
-import jeu.Etudiant;
-import jeu.License;
-import jeu.Master;
-import jeu.Prepa;
-import jeu.Tc;
+import jeu.*;
 
 public class Joueur {
 
@@ -16,10 +10,8 @@ public class Joueur {
 	private int nbCredit=5;
 	private String nomJoueur;
 
-
 	public Etudiant etudiantEnDeclin;
 	public Etudiant etudiantActif;
-
 
 	/*--Creation des Students----*/
 	private Tc unTC = new Tc();
@@ -97,7 +89,7 @@ public class Joueur {
 	}
 
 
-	public void selectionEtudiant(int choix, Etudiant etu)
+	public  void  selectionEtudiant(int choix, Etudiant etu)
 	{
 		etudiantActif=etu;
 		tabEtudiant=Etudiant.reorganiserTableau(tabEtudiant, choix);	

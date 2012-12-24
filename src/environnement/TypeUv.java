@@ -10,6 +10,21 @@ public class TypeUv
 	private Etudiant appartenance;
 	private int heuresJ1, heuresJ2;
 	protected String nomUv;
+	private int number;
+	
+	
+	public TypeUv (int pNumber, String pName){
+		number = pNumber;
+		nomUv=pName;
+	}
+	
+	public int getNumber() {
+		return number;
+	}
+	
+	public void setNumber (int number) {
+		this.number = number;
+	}
 	
 	public TypeUv(String nom)
 	{
@@ -60,22 +75,7 @@ public class TypeUv
 	{
 		heuresJ2=n;
 	}
-	public void setCoordonnees(int x, int y)
-	{		
-		this.coordonneesX=x;
-		this.coordonneesY=y;	
-	}
 	
-	
-	public int getCoordonneesX()
-	{
-		return this.coordonneesX;
-	}
-	
-	public int getCoordonneesY()
-	{
-		return this.coordonneesY;
-	}
 	
 	
 	

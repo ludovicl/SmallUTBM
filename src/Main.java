@@ -7,7 +7,7 @@ public class Main {
 	{
 				
 		Moteur m= new Moteur();
-		m.genererCarte();
+		//m.genererCarte();
 		m.choixEtudiants();
 		m.choixUv("j1");
 		
@@ -16,11 +16,10 @@ public class Main {
 		m.choixUv("j2");
 		
 		m.finTour();
-	
+		//m.choixUv("j1");
+
 	//	m.choixUv("j1");
-		
-		m.choixUv("j1");
-		m.choixNouveauEtudiant("j1");
+	//	m.choixNouveauEtudiant("j1");
 		
 		
 	//	m.choixUv("j2");

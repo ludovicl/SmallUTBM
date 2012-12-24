@@ -30,7 +30,6 @@ public class Etudiant {
 	{
 		rand = random(1,8);// effectuer un random en 1 et 8
 
-
 		switch (rand) 
 		{ 
 		case 1:
@@ -47,7 +46,6 @@ public class Etudiant {
 			PossedantVoiture possVoiture = new PossedantVoiture(); 
 			qualif = possVoiture;
 			break; 
-
 
 		case 4:
 			AlcooliqueBdf alcoBDF= new AlcooliqueBdf();
@@ -73,11 +71,8 @@ public class Etudiant {
 			Bds bureauSport = new Bds();
 			qualif = bureauSport;
 			break; 
-
 		}
-
 	}
-
 
 	public int getnombreDeHeures()
 	{
@@ -95,7 +90,7 @@ public class Etudiant {
 	}
 
 
-	public static  Etudiant[] reorganiserTableau(Etudiant tab[],int index)
+	public static   Etudiant[] reorganiserTableau(Etudiant tab[],int index)
 	{	
 		Etudiant newTab[]=new Etudiant[tab.length-1];//creation d'un nouveau tableau -1
 
@@ -109,7 +104,7 @@ public class Etudiant {
 		{
 			newTab[i]=tab[i+1];
 		}
-		
+
 		return   newTab;
 	} 
 
@@ -118,7 +113,7 @@ public class Etudiant {
 		return this.description;
 	}	
 
-	
+
 
 
 }
