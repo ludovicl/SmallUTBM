@@ -19,19 +19,68 @@ public class Moteur {
 	private Joueur j1, j2, j;
 	/*--------------------------*/
 
-	/*--------Creation des Uv --- */
-	private static TM tm1= new TM(0,"tm1");
-	private static CS cs1= new CS (1,"cs1");
-	private static Stage stage1= new Stage(2,"stage1");
-	
-	
+	/*--------Tablau d'uv !!!!!!!Pensez à bien le mettre à la bonne taille--- */
+	private static TypeUv tabUv[]= new TypeUv[3];
 	/*------------------------------*/
 
 	//Carte ca = new Carte( "map", pMapUV );
 
 	public Moteur ()
-	{
+	{	
+		//2 stages 
+		TypeUv stage1 = new Stage(1,"ST40");
+		TypeUv stage2 = new Stage(21,"st50");
+		//3 CG
+		TypeUv cg1 = new CG(6,"DR02");
+		TypeUv cg2 = new CG(10,"AR03");
+		TypeUv cg3 = new CG (4,"GE01");
+		//4 Langues
+		TypeUv langue1 = new Langue(8,"LE03_BULAT");
+		TypeUv langue2 = new Langue(3,"LG02");
+		TypeUv langue3 = new Langue(19,"LS02");
+		TypeUv langue4 = new Langue(20,"LC00");
+		//6 CS 
+		TypeUv cs1 = new CS(20,"MT42");
+		TypeUv cs2 = new CS(5,"MT45");
+		TypeUv cs3 = new CS(7,"BD40");
+		TypeUv cs4 = new CS(14,"LO43");
+		TypeUv cs5 = new CS(18,"LO45");
+		TypeUv cs6 = new CS(9,"RE43");
+		//6 TM
+		TypeUv tm1 = new TM(11,"LO54");
+		TypeUv tm2 = new TM(12,"TW52");
+		TypeUv tm3 = new TM(13,"TX52");
+		TypeUv tm4 = new TM(15,"TO52");
+		TypeUv tm5 = new TM(16,"VI50");
+		TypeUv tm6 = new TM(17,"IA54");
 
+
+		tabUv[0]=stage1;
+		tabUv[1]=stage2;
+		tabUv[2]=cg1;
+		/*tabUv[3]=cg2;
+		tabUv[4]=cg3;
+		tabUv[5]=langue1;
+		tabUv[6]=langue2;
+		tabUv[7]=langue3;
+		tabUv[8]=langue4;
+		tabUv[9]=cs1;
+		tabUv[10]=cs2;
+		tabUv[11]=cs3;
+		tabUv[12]=cs4;
+		tabUv[13]=cs5;
+		tabUv[14]=cs6;
+		tabUv[15]=tm1;
+		tabUv[16]=tm2;
+		tabUv[17]=tm3;
+		tabUv[18]=tm4;
+		tabUv[19]=tm5;
+		tabUv[20]=tm6;*/
+		
+		
+		
+		
+		
 		/*--------------Pour verifier emplacement UV---------------------------------------*/
 		int map [][] =  { {0,1,1},{1,0,0},{1,0,0} };
 		int i;
@@ -149,9 +198,9 @@ public class Moteur {
 		if(j2.getNbCredit()>=choix1)
 		{
 			j2.selectionEtudiant(choix1,j2.getTabEtudiantIndex(choix1-1));
-			
+
 			j2.decrementerNbCredit(choix1);
-			
+
 			System.out.println("Joueur 2 : "+j2.getNbCredit()+" credit(s)");
 			System.out.println("Joueur 1 : "+j1.getNbCredit()+" credit(s)");
 			System.out.println("Vous êtes maintenant un "+j2.getEtudiantActif().getDescription()+j2.getEtudiantActif().getQualifCaract());
@@ -179,27 +228,18 @@ public class Moteur {
 		{
 			System.out.println(" Nb heures joueur 1 : "+j1.getEtudiantActif().getDescription()+j1.getEtudiantActif().getnombreDeHeures());
 			System.out.println(" Nb heures joueur 2 : "+j2.getEtudiantActif().getDescription()+j2.getEtudiantActif().getnombreDeHeures());
-			
+
 			System.out.println("-----"+j.getNomJoueur()+" vous pouvez maintenant deplacer vos heurs de travail-----");
 
 			System.out.println(j.getNomJoueur()+" vous avez "+j.getEtudiantActif().getnombreDeHeures()+" heures de travail");
 			System.out.println("Voici les uv : ");	
 
-			System.out.println("1. : "+tm1.getNomUv()+" emplacement : "+tm1.getNumber());
+			for (int i=0; i<tabUv.length;i++)
+			{
+				System.out.println((i+1)+" : "+tabUv[i].getNomUv()+ " emplacement : "+tabUv[i].getNumber());
 
-			System.out.println("Heures pour joueurs 1 : "+tm1.gettHeuresJ1()+" Heures pour joueur 2 : "+tm1.gettHeuresJ2());
-			System.out.println();
-
-			System.out.println("2. : "+cs1.getNomUv()+" emplacement : "+cs1.getNumber());
-
-			System.out.println("Heures pour joueurs 1 : "+cs1.gettHeuresJ1()+" Heures pour joueur 2 : "+cs1.gettHeuresJ2());
-			System.out.println();
-
-			System.out.println("3. : "+stage1.getNomUv()+" emplacement : "+stage1.getNumber());
-
-			System.out.println("Heures pour joueurs 1 : "+stage1.gettHeuresJ1()+" Heures pour joueur 2 : "+stage1.gettHeuresJ2());
-			System.out.println();
-
+				System.out.println("Heures pour joueurs 1 : "+tabUv[i].gettHeuresJ1()+" Heures pour joueur 2 : "+tabUv[i].gettHeuresJ2());
+			}
 			System.out.println("Selectionnez le nombre d'heure à deplacer :");
 
 
@@ -218,63 +258,28 @@ public class Moteur {
 
 			if (choixHeures<=j.getEtudiantActif().getnombreDeHeures())
 			{
-				switch (choixUv) {
-				case 1:
-					if(para=="j1")
-						tm1.addHeuresJ1(choixHeures);
-					else if (para =="j2")
-						tm1.addHeuresJ2(choixHeures);
+				choixUv= choixUv-1;
+				if(para=="j1")
+					tabUv[choixUv].addHeuresJ1(choixHeures);
+				else if (para =="j2")
+					tabUv[choixUv].addHeuresJ2(choixHeures);
+				j.getEtudiantActif().decrementerHeures(choixHeures);
 
-					j.getEtudiantActif().decrementerHeures(choixHeures);
+				if(tabUv[choixUv].gettHeuresJ1()>tabUv[choixUv].gettHeuresJ2())
+					tabUv[choixUv].setAppartenance(j1.getEtudiantActif());
+				else if(tabUv[choixUv].gettHeuresJ2()>tabUv[choixUv].gettHeuresJ1())
+					tabUv[choixUv].setAppartenance(j2.getEtudiantActif());
+				else if (tabUv[choixUv].gettHeuresJ1()==tabUv[choixUv].gettHeuresJ2())
+					System.out.println("On va lancer les Dès !");
 
-					if(tm1.gettHeuresJ1()>tm1.gettHeuresJ2())
-						tm1.setAppartenance(j1.getEtudiantActif());
-					else if(tm1.gettHeuresJ2()>tm1.gettHeuresJ1())
-						tm1.setAppartenance(j2.getEtudiantActif());
-					else if (tm1.gettHeuresJ1()==tm1.gettHeuresJ2())
-						System.out.println("On va lancer les Dès !");
-					break;
-
-				case 2:
-					if(para=="j1")
-						cs1.addHeuresJ1(choixHeures);
-					else if (para =="j2")
-						cs1.addHeuresJ2(choixHeures);
-
-					j.getEtudiantActif().decrementerHeures(choixHeures);
-
-					if(cs1.gettHeuresJ1()>cs1.gettHeuresJ2())
-						cs1.setAppartenance(j1.getEtudiantActif());
-					else if(cs1.gettHeuresJ2()>cs1.gettHeuresJ1())
-						tm1.setAppartenance(j2.getEtudiantActif());
-					else if (cs1.gettHeuresJ1()==cs1.gettHeuresJ2())
-						System.out.println("On va lancer les Dès !");
-					break;
-
-				case 3:
-					if(para=="j1")
-						stage1.addHeuresJ1(choixHeures);
-					else if (para =="j2")
-						stage1.addHeuresJ2(choixHeures);
-					j.getEtudiantActif().decrementerHeures(choixHeures);
-					if(stage1.gettHeuresJ1()>stage1.gettHeuresJ2())
-						tm1.setAppartenance(j1.getEtudiantActif());
-					else if(stage1.gettHeuresJ2()>stage1.gettHeuresJ1())
-						stage1.setAppartenance(j2.getEtudiantActif());
-					else if (stage1.gettHeuresJ1()==stage1.gettHeuresJ2())
-						System.out.println("On va lancer les Dès !");
-					break;
-				default:
-					break;
-				}
 			}
 			else
 				System.out.println("Vous n'avez plus assez d'heures!");
-			
+
 			System.out.println(j2.getNomJoueur()+" vous avez "+j2.getEtudiantActif().getnombreDeHeures()+" heures de travail");
 		}
 
-	/*	if (para == "j1")
+		/*	if (para == "j1")
 		{
 			j1=j;
 		}
@@ -282,7 +287,7 @@ public class Moteur {
 		{
 			j2=j;
 		}*/
-		
+
 	}
 
 
@@ -290,88 +295,37 @@ public class Moteur {
 	{
 
 		/*----------Verification des appartenances---------------*/ 
-		if(tm1.gettAppartenance()==j1.getEtudiantActif()) // si tm1 appartient à un etudiant du joueur 1
+		for(int i=0; i<tabUv.length; i++)
 		{
-			j1.incrementerNbCredit(1); // incremente le credit de joueur 1 de 1;
-			System.out.println("L'UV "+ tm1.getNomUv()+" appartient à "+j1.getNomJoueur()+" qui est un "
-					+j1.getEtudiantActif().getDescription()+j1.getEtudiantActif().getQualifCaract());
 
-			//redonne les heures à joueur 1 moins 1h
-			j1.getEtudiantActif().incrementerHeures(tm1.gettHeuresJ1()-1);
 
-			// laisse 1h par uv
-			tm1.setHeuresJ1(1);
+			if(tabUv[i].gettAppartenance()==j1.getEtudiantActif()) // si tm1 appartient à un etudiant du joueur 1
+			{
+				j1.incrementerNbCredit(1); // incremente le credit de joueur 1 de 1;
+				System.out.println("L'UV "+ tabUv[i].getNomUv()+" appartient à "+j1.getNomJoueur()+" qui est un "
+						+j1.getEtudiantActif().getDescription()+j1.getEtudiantActif().getQualifCaract());
 
+				//redonne les heures à joueur 1 moins 1h
+				j1.getEtudiantActif().incrementerHeures(tabUv[i].gettHeuresJ1()-1);
+
+				// laisse 1h par uv
+				tabUv[i].setHeuresJ1(1);
+
+			}
+			else if (tabUv[i].gettAppartenance()==j2.getEtudiantActif())
+			{
+				j2.incrementerNbCredit(1);
+				System.out.println("L'UV "+ tabUv[i].getNomUv()+" appartient à "+j2.getNomJoueur()+" qui est un "
+						+j2.getEtudiantActif().getDescription()+j2.getEtudiantActif().getQualifCaract());
+				//redonne les heures à joueur 1 moins 1h
+				j2.getEtudiantActif().incrementerHeures(tabUv[i].gettHeuresJ2()-1);
+
+				// laisse 1h par uv
+				tabUv[i].setHeuresJ2(1);
+			}
+			else 
+				System.out.println(tabUv[i].getNomUv()+" n'appartien à aucun joueur");
 		}
-		else if (tm1.gettAppartenance()==j2.getEtudiantActif())
-		{
-			j2.incrementerNbCredit(1);
-			System.out.println("L'UV "+ tm1.getNomUv()+" appartient à "+j2.getNomJoueur()+" qui est un "
-					+j2.getEtudiantActif().getDescription()+j2.getEtudiantActif().getQualifCaract());
-			//redonne les heures à joueur 1 moins 1h
-			j2.getEtudiantActif().incrementerHeures(tm1.gettHeuresJ2()-1);
-
-			// laisse 1h par uv
-			tm1.setHeuresJ2(1);
-		}
-		else 
-			System.out.println(tm1.getNomUv()+" n'appartien à aucun joueur");
-
-
-		if(cs1.gettAppartenance()==j1.getEtudiantActif()) // si cs1 appartient à un etudiant du joueur 1
-		{
-			j1.incrementerNbCredit(1); // increment le credit de joueur 1 de 1;
-			System.out.println("L'UV "+ cs1.getNomUv()+" appartient à "+j1.getNomJoueur()+" qui est un "
-					+j1.getEtudiantActif().getDescription()+j1.getEtudiantActif().getQualifCaract());
-
-			//redonne les heures à joueur 1 moins 1h
-			j1.getEtudiantActif().incrementerHeures(cs1.gettHeuresJ1()-1);
-
-			// laisse 1h par uv
-			cs1.setHeuresJ1(1);
-		}
-		else if (cs1.gettAppartenance()==j2.getEtudiantActif())
-		{
-			j2.incrementerNbCredit(1);
-			System.out.println("L'UV "+ cs1.getNomUv()+" appartient à "+j2.getNomJoueur()+" qui est un "
-					+j2.getEtudiantActif().getDescription()+j2.getEtudiantActif().getQualifCaract());
-			//redonne les heures à joueur 1 moins 1h
-			j2.getEtudiantActif().incrementerHeures(cs1.gettHeuresJ2()-1);
-
-			// laisse 1h par uv
-			cs1.setHeuresJ2(1);
-		}
-		else 
-			System.out.println(cs1.getNomUv()+" n'appartien à aucun joueur");
-
-
-		if(stage1.gettAppartenance()==j1.getEtudiantActif()) // sis stage1 appartient à un etudiant du joueur 1
-		{
-			j1.incrementerNbCredit(1); // increment le credit de joueur 1 de 1;
-			System.out.println("L'UV "+ stage1.getNomUv()+" appartient à "+j1.getNomJoueur()+" qui est un "
-					+j1.getEtudiantActif().getDescription()+j1.getEtudiantActif().getQualifCaract());
-			//redonne les heures à joueur 1 moins 1h
-			j1.getEtudiantActif().incrementerHeures(stage1.gettHeuresJ1()-1);
-
-			// laisse 1h par uv
-			stage1.setHeuresJ1(1);
-		}
-		else if (stage1.gettAppartenance()==j2.getEtudiantActif())
-		{
-			j2.incrementerNbCredit(1);
-			System.out.println("L'UV "+ stage1.getNomUv()+" appartient à "+j2.getNomJoueur()+" qui est un "
-					+j2.getEtudiantActif().getDescription()+j2.getEtudiantActif().getQualifCaract());
-
-			//redonne les heures à joueur 1 moins 1h
-			j2.getEtudiantActif().incrementerHeures(stage1.gettHeuresJ2()-1);
-
-			// laisse 1h par uv
-			stage1.setHeuresJ2(1);
-		}
-		else 
-			System.out.println(stage1.getNomUv()+" n'appartien à aucun joueur");
-
-		/*----------------------------------------------------------------------------------------*/
 
 	}
 
