@@ -13,7 +13,7 @@ public class TypeUv
 	private int number;
 	
 	
-	public TypeUv (int pNumber, String pName){
+	public TypeUv (String pName,int pNumber){
 		number = pNumber;
 		nomUv=pName;
 	}
@@ -26,10 +26,6 @@ public class TypeUv
 		this.number = number;
 	}
 	
-	public TypeUv(String nom)
-	{
-		nomUv=nom;
-	}
 	
 	public String getNomUv()
 	{

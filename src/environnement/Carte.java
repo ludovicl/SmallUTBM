@@ -3,7 +3,7 @@ package environnement;
 
 public class Carte {
 	private String name;
-	private boolean [][] mapUV;
+	private boolean mapUV[][];
 	
 	public Carte (String pName, boolean[][] pMapUV){
 		int i, j, ln;

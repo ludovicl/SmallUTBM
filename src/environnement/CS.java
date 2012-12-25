@@ -2,9 +2,8 @@ package environnement;
 
 public class CS extends TypeUv {
 
-	public CS(int pNumber, String pName) {
-		super(pNumber, pName);
+	public CS(String pName,int pNumber) {
+		super(pName, pNumber);
 		// TODO Auto-generated constructor stub
 	}
-
 }

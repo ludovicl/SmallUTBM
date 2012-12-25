@@ -2,8 +2,8 @@ package environnement;
 
 public class Stage extends TypeUv {
 
-	public Stage(int pNumber, String pName) {
-		super(pNumber, pName);
+	public Stage(String pName,int pNumber ) {
+		super(pName, pNumber);
 		// TODO Auto-generated constructor stub
 	}
 

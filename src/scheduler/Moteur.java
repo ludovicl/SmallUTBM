@@ -23,36 +23,36 @@ public class Moteur {
 	private static TypeUv tabUv[]= new TypeUv[3];
 	/*------------------------------*/
 
-	//Carte ca = new Carte( "map", pMapUV );
+	private Carte ca ;
 
 	public Moteur ()
 	{	
 		//2 stages 
-		TypeUv stage1 = new Stage(1,"ST40");
-		TypeUv stage2 = new Stage(21,"st50");
+		TypeUv stage1 = new Stage("ST40",1);
+		TypeUv stage2 = new Stage("st50",21);
 		//3 CG
-		TypeUv cg1 = new CG(6,"DR02");
-		TypeUv cg2 = new CG(10,"AR03");
-		TypeUv cg3 = new CG (4,"GE01");
+		TypeUv cg1 = new CG("DR02",6);
+		TypeUv cg2 = new CG("AR03",10);
+		TypeUv cg3 = new CG ("GE01",4);
 		//4 Langues
-		TypeUv langue1 = new Langue(8,"LE03_BULAT");
-		TypeUv langue2 = new Langue(3,"LG02");
-		TypeUv langue3 = new Langue(19,"LS02");
-		TypeUv langue4 = new Langue(20,"LC00");
+		TypeUv langue1 = new Langue("LE03_BULAT",8);
+		TypeUv langue2 = new Langue("LG02",3);
+		TypeUv langue3 = new Langue("LS02",19);
+		TypeUv langue4 = new Langue("LC00",20);
 		//6 CS 
-		TypeUv cs1 = new CS(20,"MT42");
-		TypeUv cs2 = new CS(5,"MT45");
-		TypeUv cs3 = new CS(7,"BD40");
-		TypeUv cs4 = new CS(14,"LO43");
-		TypeUv cs5 = new CS(18,"LO45");
-		TypeUv cs6 = new CS(9,"RE43");
+		TypeUv cs1 = new CS("MT42",20);
+		TypeUv cs2 = new CS("MT45",5);
+		TypeUv cs3 = new CS("BD40",7);
+		TypeUv cs4 = new CS("LO43",14);
+		TypeUv cs5 = new CS("LO45",18);
+		TypeUv cs6 = new CS("RE43",9);
 		//6 TM
-		TypeUv tm1 = new TM(11,"LO54");
-		TypeUv tm2 = new TM(12,"TW52");
-		TypeUv tm3 = new TM(13,"TX52");
-		TypeUv tm4 = new TM(15,"TO52");
-		TypeUv tm5 = new TM(16,"VI50");
-		TypeUv tm6 = new TM(17,"IA54");
+		TypeUv tm1 = new TM("LO54",11);
+		TypeUv tm2 = new TM("TW52",12);
+		TypeUv tm3 = new TM("TX52",13);
+		TypeUv tm4 = new TM("TO52",15);
+		TypeUv tm5 = new TM("VI50",16);
+		TypeUv tm6 = new TM("IA54",17);
 
 
 		tabUv[0]=stage1;
@@ -76,11 +76,11 @@ public class Moteur {
 		tabUv[18]=tm4;
 		tabUv[19]=tm5;
 		tabUv[20]=tm6;*/
-		
-		
-		
-		
-		
+
+
+
+
+
 		/*--------------Pour verifier emplacement UV---------------------------------------*/
 		int map [][] =  { {0,1,1},{1,0,0},{1,0,0} };
 		int i;
@@ -88,18 +88,20 @@ public class Moteur {
 		int ln;
 		ln = map.length;
 		boolean b;
-
 		boolean[][] pMapUV = new boolean [ln][ln]; 
 		for (i=0; i<ln; i++)
 		{
 			for (idx=0; idx<ln; idx++)
-			{
+			{	
 				if (map[i][idx]==1)
 					pMapUV[i][idx]=true;
 				else
 					pMapUV[i][idx]=false;
 			}
 		}
+
+		ca =   new Carte( "map", pMapUV );
+
 
 		/*------------------------------------------------------------------------------*/		
 
@@ -108,6 +110,9 @@ public class Moteur {
 
 		j1 = new Joueur();
 		j2 = new Joueur();	
+
+		System.out.println(ca.isVoisin(stage1, stage2));
+
 
 		System.out.println("Saisir le nom du joueur1 :");	
 
@@ -352,14 +357,34 @@ public class Moteur {
 		{
 			System.out.println("Vous pouvez selectionner un nouvel etudiant ");
 			/*----Affichage des etudiants selectionables--------------*/
-			for (int i=0; i<j2.getTabEtudiant().length; i++)
+			for (int i=0; i<j1.getTabEtudiant().length; i++)
 				System.out.println(i+1 +" : "+j2.getTabEtudiantIndex(i).getDescription()+j2.getTabEtudiantIndex(i).getQualifCaract());
 
 			/*---------Cin de l'utilisateur ------*/
 			Scanner in11 = new Scanner(System.in);
 			int choix1 = in11.nextInt();
 			/*---------Fin Cin de l'utilisateur ------*/
+
 			System.out.println(j2.getNbCredit());
+
+			j.etudiantEnDeclin=j.getTabEtudiantIndex(choix1);//atribution nouvel etudiant
+
+
+			for(int i=0; i<tabUv.length; i++)// on laisse 1 heure sur chaque uv par joueur
+			{
+				if(tabUv[i].gettAppartenance()==j.getEtudiantActif())
+				{
+					j.setEtudiantEnDeclin(j.getEtudiantActif());
+					
+					if(j==j1)
+						tabUv[i].setHeuresJ1(1);
+					else if (j==j2)
+						tabUv[i].setHeuresJ2(1);
+
+				}
+			}	
+
+
 
 		}
 

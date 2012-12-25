@@ -115,5 +115,9 @@ public class Joueur {
 		return tabEtudiant[i];
 
 	}
+	public void setEtudiantEnDeclin(Etudiant pEtudiant)
+	{
+		etudiantEnDeclin=pEtudiant;
+	}
 
 }
