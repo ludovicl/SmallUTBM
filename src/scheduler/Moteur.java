@@ -291,6 +291,27 @@ public class Moteur {
 						}
 					}
 				}
+				
+				if(para=="j2")
+				{
+					//compare les uv des etudiants du joueur pour savoir si elles sont cote à cote
+					for (int i=0; i<tabUv.length;i++)
+					{
+						//si l'uv appartient à un des etudiants ou si c'est le 1er tour
+						if(tabUv[i].gettAppartenance()==j2.getEtudiantActif() ||tabUv[i].gettAppartenance()==j2.getEtudiantEnDeclin() || nbTour==1)
+						{
+							if(((ca.isVoisin(tabUv[choixUv], tabUv[i])==true) || nbTour==1 ))//si l'uv choisie est à cote d'une uv appartenant au joueur
+							{					
+								tabUv[choixUv].addHeuresJ2(choixHeures);
+								j.getEtudiantActif().decrementerHeures(choixHeures);
+								i=tabUv.length;
+							}
+							else 
+								System.out.println("Vous ne pouvez pas placer des heures " +
+										"si elle l'uv choisit n'est pas à coté d'une uv vous appartenant ");
+						}
+					}
+				}
 				if(tabUv[choixUv].gettHeuresJ1()>tabUv[choixUv].gettHeuresJ2())
 					tabUv[choixUv].setAppartenance(j1.getEtudiantActif());
 				else if(tabUv[choixUv].gettHeuresJ2()>tabUv[choixUv].gettHeuresJ1())

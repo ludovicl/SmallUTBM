@@ -92,7 +92,7 @@ public class Etudiant {
 
 	public static   Etudiant[] reorganiserTableau(Etudiant tab[],int index)
 	{	
-		Etudiant newTab[]=new Etudiant[tab.length-1];//creation d'un nouveau tableau -1
+		Etudiant newTab[]=new Etudiant[tab.length];//creation d'un nouveau tableau -1
 
 		//recopie tout les element de tab dans newTab sauf l'index
 		for(int i=0; i<index-1; i++)//on va de 0 à index-1
@@ -104,6 +104,7 @@ public class Etudiant {
 		{
 			newTab[i]=tab[i+1];
 		}
+		newTab[5]=tab[index-1];
 
 		return   newTab;
 	} 
