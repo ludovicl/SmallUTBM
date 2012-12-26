@@ -235,7 +235,7 @@ public class Moteur {
 			j=j2;
 		}
 
-		while (j.etudiantActif.getnombreDeHeures()>0)// tant que le joueur à des credits
+		while (j.etudiantActif.getnombreDeHeures()>0)// tant que le joueur a des credits
 		{
 			System.out.println(" Nb heures joueur 1 : "+j1.getEtudiantActif().getDescription()+j1.getEtudiantActif().getnombreDeHeures());
 			System.out.println(" Nb heures joueur 2 : "+j2.getEtudiantActif().getDescription()+j2.getEtudiantActif().getnombreDeHeures());
@@ -291,7 +291,7 @@ public class Moteur {
 						}
 					}
 				}
-				
+
 				if(para=="j2")
 				{
 					//compare les uv des etudiants du joueur pour savoir si elles sont cote à cote
@@ -317,7 +317,22 @@ public class Moteur {
 				else if(tabUv[choixUv].gettHeuresJ2()>tabUv[choixUv].gettHeuresJ1())
 					tabUv[choixUv].setAppartenance(j2.getEtudiantActif());
 				else if (tabUv[choixUv].gettHeuresJ1()==tabUv[choixUv].gettHeuresJ2())
-					System.out.println("On va lancer les Dès !");
+				{
+					int lower = 1;
+					int higher = 2;
+					int random = (int)(Math.random() * (higher-lower)) + lower;
+
+					System.out.println("LANCEMENT DES DE : "+random);
+					if(random==1)
+					{
+						tabUv[choixUv].setAppartenance(j1.getEtudiantActif());
+					}
+					else if (random==2)
+					{
+						tabUv[choixUv].setAppartenance(j2.getEtudiantActif());
+					}						
+
+				}
 
 			}
 			else
@@ -372,6 +387,7 @@ public class Moteur {
 
 	public void choixNouveauEtudiant(String s)
 	{
+
 		if (s == "j1")
 		{
 			j=j1;
@@ -380,14 +396,16 @@ public class Moteur {
 		{
 			j=j2;
 		}
-		System.out.println(j.getNomJoueur()+ "Voulez-vous choisir une nouvel etudiant ? Y/N ");
+
+		System.out.println(j.getNomJoueur()+ "Voulez-vous choisir une nouvel etudiant ? 1 pour OUI ");
 
 		/*---------Cin de l'utilisateur ------*/
 		Scanner in1 = new Scanner(System.in);
-		String choixYN = in1.toString();
+		int choixYN = in1.nextInt();
 		/*---------Fin Cin de l'utilisateur ------*/
 
-		if (choixYN == "y" || choixYN == "Y")
+
+		if (choixYN==1)
 		{
 			System.out.println("Vous pouvez selectionner un nouvel etudiant ");
 			/*----Affichage des etudiants selectionables--------------*/
@@ -427,4 +445,27 @@ public class Moteur {
 		nbTour++;
 	}
 
+	public void testVictoire()
+	{
+		if(j1.getNbCredit()<j2.getNbCredit())
+		{
+			System.out.println(j2.getNomJoueur() +" vous avez gagné !");
+		}
+		else if(j1.getNbCredit()>j2.getNbCredit())
+		{
+			System.out.println(j1.getNomJoueur() +" vous avez gagné !");
+		}
+		else
+		{
+			System.out.println("Egualite entre les joueurs !");
+		}	
+
+
+	}
+
+
+
+
 }
+
+
