@@ -20,8 +20,10 @@ public class Moteur {
 	/*--------------------------*/
 
 	/*--------Tablau d'uv !!!!!!!Pensez à bien le mettre à la bonne taille--- */
-	private static TypeUv tabUv[]= new TypeUv[3];
+	private static TypeUv tabUv[]= new TypeUv[2];
 	/*------------------------------*/
+
+	private static int nbTour=0;//nombre de tour joué
 
 	private Carte ca ;
 
@@ -29,9 +31,13 @@ public class Moteur {
 	{	
 		//2 stages 
 		TypeUv stage1 = new Stage("ST40",1);
-		TypeUv stage2 = new Stage("st50",21);
+		//TypeUv stage2 = new Stage("st50",21);
+		TypeUv stage2 = new Stage("st50",2);//car bug avec 21 en number
+
 		//3 CG
-		TypeUv cg1 = new CG("DR02",6);
+		//TypeUv cg1 = new CG("DR02",6);
+		TypeUv cg1 = new CG("DR02",3);//car bug avec 6 en number
+
 		TypeUv cg2 = new CG("AR03",10);
 		TypeUv cg3 = new CG ("GE01",4);
 		//4 Langues
@@ -57,7 +63,7 @@ public class Moteur {
 
 		tabUv[0]=stage1;
 		tabUv[1]=stage2;
-		tabUv[2]=cg1;
+		//tabUv[2]=cg1;
 		/*tabUv[3]=cg2;
 		tabUv[4]=cg3;
 		tabUv[5]=langue1;
@@ -264,12 +270,27 @@ public class Moteur {
 			if (choixHeures<=j.getEtudiantActif().getnombreDeHeures())
 			{
 				choixUv= choixUv-1;
-				if(para=="j1")
-					tabUv[choixUv].addHeuresJ1(choixHeures);
-				else if (para =="j2")
-					tabUv[choixUv].addHeuresJ2(choixHeures);
-				j.getEtudiantActif().decrementerHeures(choixHeures);
 
+				if(para=="j1")
+				{
+					//compare les uv des etudiants du joueur pour savoir si elles sont cote à cote
+					for (int i=0; i<tabUv.length;i++)
+					{
+						//si l'uv appartient à un des etudiants ou si c'est le 1er tour
+						if(tabUv[i].gettAppartenance()==j1.getEtudiantActif() ||tabUv[i].gettAppartenance()==j1.getEtudiantEnDeclin() || nbTour==1)
+						{
+							if(((ca.isVoisin(tabUv[choixUv], tabUv[i])==true) || nbTour==1 ))//si l'uv choisie est à cote d'une uv appartenant au joueur
+							{					
+								tabUv[choixUv].addHeuresJ1(choixHeures);
+								j.getEtudiantActif().decrementerHeures(choixHeures);
+								i=tabUv.length;
+							}
+							else 
+								System.out.println("Vous ne pouvez pas placer des heures " +
+										"si elle l'uv choisit n'est pas à coté d'une uv vous appartenant ");
+						}
+					}
+				}
 				if(tabUv[choixUv].gettHeuresJ1()>tabUv[choixUv].gettHeuresJ2())
 					tabUv[choixUv].setAppartenance(j1.getEtudiantActif());
 				else if(tabUv[choixUv].gettHeuresJ2()>tabUv[choixUv].gettHeuresJ1())
@@ -284,14 +305,7 @@ public class Moteur {
 			System.out.println(j2.getNomJoueur()+" vous avez "+j2.getEtudiantActif().getnombreDeHeures()+" heures de travail");
 		}
 
-		/*	if (para == "j1")
-		{
-			j1=j;
-		}
-		else if (para =="j2")
-		{
-			j2=j;
-		}*/
+
 
 	}
 
@@ -335,7 +349,6 @@ public class Moteur {
 	}
 
 
-
 	public void choixNouveauEtudiant(String s)
 	{
 		if (s == "j1")
@@ -375,7 +388,7 @@ public class Moteur {
 				if(tabUv[i].gettAppartenance()==j.getEtudiantActif())
 				{
 					j.setEtudiantEnDeclin(j.getEtudiantActif());
-					
+
 					if(j==j1)
 						tabUv[i].setHeuresJ1(1);
 					else if (j==j2)
@@ -384,11 +397,13 @@ public class Moteur {
 				}
 			}	
 
-
-
 		}
 
 	}
 
+	public static void incrementerNbTour()
+	{
+		nbTour++;
+	}
 
 }
