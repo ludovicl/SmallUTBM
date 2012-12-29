@@ -248,7 +248,6 @@ public class Moteur {
 			for (int i=0; i<tabUv.length;i++)
 			{
 				System.out.println((i+1)+" : "+tabUv[i].getNomUv()+ " emplacement : "+tabUv[i].getNumber());
-
 				System.out.println("Heures pour joueurs 1 : "+tabUv[i].gettHeuresJ1()+" Heures pour joueur 2 : "+tabUv[i].gettHeuresJ2());
 			}
 			System.out.println("Selectionnez le nombre d'heure à deplacer :");
@@ -276,7 +275,7 @@ public class Moteur {
 					//compare les uv des etudiants du joueur pour savoir si elles sont cote à cote
 					for (int i=0; i<tabUv.length;i++)
 					{
-						//si l'uv appartient à un des etudiants ou si c'est le 1er tour
+						//si l'uv à coté appartient à un des etudiants ou si c'est le 1er tour
 						if(tabUv[i].gettAppartenance()==j1.getEtudiantActif() ||tabUv[i].gettAppartenance()==j1.getEtudiantEnDeclin() || nbTour==1)
 						{
 							if(((ca.isVoisin(tabUv[choixUv], tabUv[i])==true) || nbTour==1 ))//si l'uv choisie est à cote d'une uv appartenant au joueur
@@ -287,7 +286,7 @@ public class Moteur {
 							}
 							else 
 								System.out.println("Vous ne pouvez pas placer des heures " +
-										"si elle l'uv choisit n'est pas à coté d'une uv vous appartenant ");
+										"si l'uv choisit n'est pas à coté d'une uv vous appartenant ");
 						}
 					}
 				}
@@ -312,6 +311,8 @@ public class Moteur {
 						}
 					}
 				}
+
+				/*--------------Attribution des appartenances---------------*/
 				if(tabUv[choixUv].gettHeuresJ1()>tabUv[choixUv].gettHeuresJ2())
 					tabUv[choixUv].setAppartenance(j1.getEtudiantActif());
 				else if(tabUv[choixUv].gettHeuresJ2()>tabUv[choixUv].gettHeuresJ1())
@@ -346,7 +347,7 @@ public class Moteur {
 	}
 
 
-	public void finTour()// methode verifiant l'appartenance des uv
+	public void finTour()// methode verifiant l'appartenance des uv en fin de tour
 	{
 
 		/*----------Verification des appartenances---------------*/ 
@@ -419,23 +420,31 @@ public class Moteur {
 
 			System.out.println(j2.getNbCredit());
 
-			j.etudiantEnDeclin=j.getTabEtudiantIndex(choix1);//atribution nouvel etudiant
-
-
-			for(int i=0; i<tabUv.length; i++)// on laisse 1 heure sur chaque uv par joueur
+			if (choix1<=j.getNbCredit())
 			{
-				if(tabUv[i].gettAppartenance()==j.getEtudiantActif())
+				for(int i=0; i<tabUv.length; i++)// on laisse 1 heure sur chaque uv par joueur
 				{
-					j.setEtudiantEnDeclin(j.getEtudiantActif());
+					j.getEtudiantEnDeclin().setNbHeures(0);
+					if(tabUv[i].gettAppartenance()==j.getEtudiantActif())
+					{
+						//passe l'édudiant actif en declin;
+						j.setEtudiantEnDeclin(j.getEtudiantActif());
 
-					if(j==j1)
-						tabUv[i].setHeuresJ1(1);
-					else if (j==j2)
-						tabUv[i].setHeuresJ2(1);
+						if(j==j1)
+							tabUv[i].setHeuresJ1(1);
+						else if (j==j2)
+							tabUv[i].setHeuresJ2(1);
+					}
+					
+					//selection du nouvel étudiant
+					j1.selectionEtudiant(choix1,j.getTabEtudiantIndex(choix1-1));
+					j1.decrementerNbCredit(choix1);
+					System.out.println("Vous êtes maintenant un "+j.getEtudiantActif().getDescription()+j.getEtudiantActif().getQualifCaract());
+				}	
 
-				}
-			}	
-
+			}
+			else 
+				System.out.println("Vous n'avez pas assez de credit");
 		}
 
 	}

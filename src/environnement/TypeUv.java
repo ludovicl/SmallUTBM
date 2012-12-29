@@ -4,10 +4,8 @@ package environnement;
 import jeu.Etudiant;
 public class TypeUv 
 {
-		
-	private int coordonneesX,coordonneesY;
-	
-	private Etudiant appartenance;
+			
+	private Etudiant possesseur;
 	private int heuresJ1, heuresJ2;
 	protected String nomUv;
 	private int number;
@@ -34,12 +32,12 @@ public class TypeUv
 	
 	public void setAppartenance(Etudiant etu)
 	{
-		appartenance=etu;
+		possesseur=etu;
 	}
 	
 	public Etudiant gettAppartenance()
 	{
-		return appartenance;
+		return possesseur;
 	}
 	
 	public void addHeuresJ1(int para)

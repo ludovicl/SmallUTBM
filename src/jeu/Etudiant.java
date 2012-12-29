@@ -13,11 +13,8 @@ public class Etudiant {
 	}
 
 	protected int nombreDeHeures=5;
-	private int rand;
 	private Caracteristique qualif;
-	protected String nomQualification;
 	protected String description;
-	protected String typeStudent;
 
 	public String getQualifCaract()
 	{
@@ -28,7 +25,7 @@ public class Etudiant {
 
 	public Etudiant()
 	{
-		rand = random(1,8);// effectuer un random en 1 et 8
+		int rand = random(1,8);// effectuer un random en 1 et 8
 
 		switch (rand) 
 		{ 
@@ -73,6 +70,7 @@ public class Etudiant {
 			break; 
 		}
 	}
+	
 
 	public int getnombreDeHeures()
 	{
@@ -94,19 +92,28 @@ public class Etudiant {
 	{	
 		Etudiant newTab[]=new Etudiant[tab.length];//creation d'un nouveau tableau -1
 
-		//recopie tout les element de tab dans newTab sauf l'index
-		for(int i=0; i<index-1; i++)//on va de 0 à index-1
+		if (index==6)
 		{
-			newTab[i]=tab[i];
-		}	
-
-		for(int i=index-1; i<tab.length-1; i++)
-		{
-			newTab[i]=tab[i+1];
+			for(int i=0; i<6; i++)//on va de 0 à index-1
+			{
+				newTab[i]=tab[i];
+			}
 		}
-		newTab[5]=tab[index-1];
-
+		else 
+		{
+			//recopie tout les element de tab dans newTab sauf l'index
+			for(int i=0; i<index-1; i++)//on va de 0 à index-1
+			{
+				newTab[i]=tab[i];
+			}	
+			for(int i=index-1; i<tab.length-1; i++)
+			{
+				newTab[i]=tab[i+1];
+			}
+			newTab[5]=tab[index-1];
+		}
 		return   newTab;
+
 	} 
 
 	public String getDescription ()
@@ -114,7 +121,10 @@ public class Etudiant {
 		return this.description;
 	}	
 
-
+	public void setNbHeures(int pNbH)
+	{
+		nombreDeHeures=pNbH;
+	}
 
 
 }

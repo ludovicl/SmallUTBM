@@ -7,7 +7,7 @@ import jeu.*;
 public class Joueur {
 
 
-	private int nbCredit=5;
+	private int nbCredit=6;
 	private String nomJoueur;
 
 	public Etudiant etudiantEnDeclin;
@@ -66,22 +66,6 @@ public class Joueur {
 		return nomJoueur;
 	}
 
-	public void passerEtudiantEnDeclin() 
-	{
-
-	}
-
-
-
-	public void lancerDe() 
-	{
-
-	}
-
-	public void finirTour() 
-	{
-
-	}
 
 	public void choisirEtudiant(Etudiant stu) 
 	{
@@ -95,6 +79,7 @@ public class Joueur {
 		tabEtudiant=Etudiant.reorganiserTableau(tabEtudiant, choix);	
 	}
 
+	
 	public Etudiant getEtudiantActif ()
 	{
 		return etudiantActif;
