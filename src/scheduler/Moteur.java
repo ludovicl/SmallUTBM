@@ -20,7 +20,7 @@ public class Moteur {
 	/*--------------------------*/
 
 	/*--------Tablau d'uv !!!!!!!Pensez à bien le mettre à la bonne taille--- */
-	private static TypeUv tabUv[]= new TypeUv[2];
+	public static TypeUv tabUv[]= new TypeUv[20];
 	/*------------------------------*/
 
 	private static int nbTour=0;//nombre de tour joué
@@ -63,8 +63,8 @@ public class Moteur {
 
 		tabUv[0]=stage1;
 		tabUv[1]=stage2;
-		//tabUv[2]=cg1;
-		/*tabUv[3]=cg2;
+		tabUv[2]=cg1;
+		tabUv[3]=cg2;
 		tabUv[4]=cg3;
 		tabUv[5]=langue1;
 		tabUv[6]=langue2;
@@ -81,7 +81,7 @@ public class Moteur {
 		tabUv[17]=tm3;
 		tabUv[18]=tm4;
 		tabUv[19]=tm5;
-		tabUv[20]=tm6;*/
+	//	tabUv[20]=tm6;
 
 
 

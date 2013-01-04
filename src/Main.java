@@ -1,3 +1,5 @@
+import ihm.InitFrame;
+
 import scheduler.Moteur;
 
 
@@ -9,6 +11,9 @@ public class Main {
 		Moteur m= new Moteur();
 		m.choixEtudiants();
 
+		InitFrame window = new InitFrame(m.tabUv);
+		window.visible();
+		
 		for (int i=1; i<9; i++)
 		{
 			System.out.println("TOUR : " +i );

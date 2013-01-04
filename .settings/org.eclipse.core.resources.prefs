@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/Main.java=UTF-8
+encoding//src/ihm/Plan.java=UTF-8
 encoding//src/interaction/Joueur.java=UTF-8
 encoding//src/jeu/Etudiant.java=UTF-8
 encoding//src/scheduler/Moteur.java=UTF-8
