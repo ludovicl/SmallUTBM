@@ -32,7 +32,7 @@ public class Plan {
 	private JFrame frame;
 	
 	/* Cadre du Joueur*/
-	private static JLabel NomJoueur = new JLabel("Joueur");
+	private static JLabel NomJoueur;// = new JLabel("Joueur");
 	private static JLabel photoJoueur =  new JLabel("Photo");
 	
 	//private JButton //tabB[]= new JButton[20];
@@ -103,13 +103,14 @@ public class Plan {
 	/**
 	 * Create the application.
 	 */
-	public Plan(TypeUv pTabUv[]) {
+	public Plan(TypeUv pTabUv[], String pNom) {
 		
 		for(int i=0; i<pTabUv.length; i++)
 		{
 			tabUv[i]=pTabUv[i];
 		}
 			
+		NomJoueur = new JLabel(pNom);
 		//tableau();
 		initialize();
 	}

@@ -53,8 +53,8 @@ public class InitFrame {
 	 * Create the application.
 	 * @wbp.parser.entryPoint
 	 */
-	public InitFrame(TypeUv tabUv[]) {
-		initialize(tabUv);
+	public InitFrame(TypeUv tabUv[], String pNom) {
+		initialize(tabUv, pNom);
 	}
 
 	/**
@@ -63,7 +63,7 @@ public class InitFrame {
 	
 		
 	
-	private void initialize(final TypeUv tabUv[]) {
+	private void initialize(final TypeUv tabUv[], final String nom) {
 		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1000, 600);
@@ -83,7 +83,7 @@ public class InitFrame {
 				fen.getF().setVisible(true);
 				fen.NomJoueur(nomJ1.getText());*/
 		
-				Plan carte = new Plan(tabUv);
+				Plan carte = new Plan(tabUv, nom);
 				carte.getF().setVisible(true); 
 				carte.setNomJoueur(nomJ1.getText());
 				carte.setPhoto(1);
