@@ -53,8 +53,8 @@ public class InitFrame {
 	 * Create the application.
 	 * @wbp.parser.entryPoint
 	 */
-	public InitFrame(TypeUv tabUv[], String pNom) {
-		initialize(tabUv, pNom);
+	public InitFrame(TypeUv tabUv[]) {
+		initialize(tabUv);
 	}
 
 	/**
@@ -63,7 +63,7 @@ public class InitFrame {
 	
 		
 	
-	private void initialize(final TypeUv tabUv[], final String nom) {
+	private void initialize(final TypeUv tabUv[]) {
 		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1000, 600);
@@ -83,10 +83,10 @@ public class InitFrame {
 				fen.getF().setVisible(true);
 				fen.NomJoueur(nomJ1.getText());*/
 		
-				Plan carte = new Plan(tabUv, nom);
-				carte.getF().setVisible(true); 
-				carte.setNomJoueur(nomJ1.getText());
-				carte.setPhoto(1);
+				Plan lePlan = new Plan(tabUv);
+				lePlan.getF().setVisible(true); 
+				lePlan.setNomJoueur(nomJ1.getText());
+				lePlan.setPhoto(1);
 			
 				
 			}
@@ -104,8 +104,6 @@ public class InitFrame {
 		choixCarte.addItem("Sevenans");
 		frame.getContentPane().add(choixCarte);
 		choixCarte.addItemListener(new ItemState());
-		 
-		
 		
 		JLabel lblChoixDeLa = new JLabel("Choix de la Carte :");
 		lblChoixDeLa.setFont(new Font("DejaVu Sans", Font.BOLD, 25));
@@ -184,4 +182,16 @@ public class InitFrame {
 		 }
 		
 	 }
+	 
+	 /*------ ajout 05/01---------------*/
+	 public String getNomj1()
+	 {
+		 return nomJ1.getName();
+	 }
+	 
+	 public String getNomj2()
+	 {
+		 return nomJ2.getName();
+	 }
+	 /*---------------------------------*/
 }

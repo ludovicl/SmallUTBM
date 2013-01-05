@@ -103,14 +103,13 @@ public class Plan {
 	/**
 	 * Create the application.
 	 */
-	public Plan(TypeUv pTabUv[], String pNom) {
+	public Plan(TypeUv pTabUv[]) {
 		
 		for(int i=0; i<pTabUv.length; i++)
 		{
 			tabUv[i]=pTabUv[i];
 		}
 			
-		NomJoueur = new JLabel(pNom);
 		//tableau();
 		initialize();
 	}

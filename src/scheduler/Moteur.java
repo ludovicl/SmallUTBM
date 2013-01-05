@@ -19,12 +19,13 @@ public class Moteur {
 	/*---Creation des Joueurs j est un object intermediaire et n'est pas utilisé--*/
 	private Joueur j1, j2, j;
 	/*--------------------------*/
-
+	
+	
 	/*--------Tablau d'uv !!!!!!!Pensez à bien le mettre à la bonne taille--- */
 	private static TypeUv tabUv[]= new TypeUv[20];
 	/*------------------------------*/
 
-	private InitFrame window;
+
 	
 	private static int nbTour=0;//nombre de tour joué
 
@@ -39,7 +40,7 @@ public class Moteur {
 		return j1;
 	}
 	
-	public Joueur getJ22()
+	public Joueur getJ2()
 	{
 		return j2;
 	}
@@ -100,48 +101,77 @@ public class Moteur {
 		tabUv[17]=tm3;
 		tabUv[18]=tm4;
 		tabUv[19]=tm5;
-	//	tabUv[20]=tm6;
+		//tabUv[20]=tm6;
 
 
 
 
-//
-//		/*--------------Pour verifier emplacement UV---------------------------------------*/
-//		int map [][] =  { {0,1,1},{1,0,0},{1,0,0} };
-//		int i;
-//		int idx;
-//		int ln;
-//		ln = map.length;
-//		boolean b;
-//		boolean[][] pMapUV = new boolean [ln][ln]; 
-//		for (i=0; i<ln; i++)
-//		{
-//			for (idx=0; idx<ln; idx++)
-//			{	
-//				if (map[i][idx]==1)
-//					pMapUV[i][idx]=true;
-//				else
-//					pMapUV[i][idx]=false;
-//			}
-//		}
-//
-//		ca =   new Carte( "map", pMapUV );
+
+		/*--------------Pour verifier emplacement UV---------------------------------------*/
+		int map [][] =  {{1,0,1,1,0,1,0,1,0,1,0,1,0,0,1,1,0,0,1,0,1,1}
+		,{0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+		,{1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+		,{1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+		,{0,0,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+		,{1,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+		,{0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0}
+		,{1,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0}
+		,{0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0}
+		,{1,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0}
+		,{0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,1,0,0}
+		,{1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1,0,0,0,0,0,0}
+		,{0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,1,0,0,0,0,0}
+		,{0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,1,0,0,0,0}
+		,{1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,0,0,0}
+		,{1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,0,0,0,0,0}
+		,{0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,1,0,0,0,0}
+		,{0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,1,0,0,0}
+		,{1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,0,0,0}
+		,{0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,1,0}
+		,{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1}
+		,{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1}};
+
+		int i;
+		int idx;
+		int ln;
+		ln = map.length;
+		boolean b;
+		boolean[][] pMapUV = new boolean [ln][ln]; 
+		for (i=0; i<ln; i++)
+		{
+			for (idx=0; idx<ln; idx++)
+			{	
+				if (map[i][idx]==1)
+					pMapUV[i][idx]=true;
+				else
+					pMapUV[i][idx]=false;
+			}
+		}
+
+		ca =   new Carte( "map", pMapUV );
 
 
 		/*------------------------------------------------------------------------------*/		
 
 		/*----------Definition noms de joueurs et selection des etudiants-------------------------*/
+		
+		
+	
+	
+		
 		j=new Joueur();
 
 		j1 = new Joueur();
 		j2 = new Joueur();	
 
-		//System.out.println(ca.isVoisin(stage1, stage2));
+		
+
+		System.out.println(ca.isVoisin(stage1, stage2));
 
 
-		//System.out.println("Saisir le nom du joueur1 :");	
+		System.out.println("Saisir le nom du joueur1 :");	
 
-	/*	---------Cin de l'utilisateur ------
+	///*	---------Cin de l'utilisateur ------
 		char buf[]=new char[10];
 		Reader in = new InputStreamReader(System.in);
 		try {
@@ -151,47 +181,41 @@ public class Moteur {
 			e.printStackTrace();
 		}
 		String nomj1 = new String(buf);
-		---------Fin Cin de l'utilisateur ------*/
+		//---------Fin Cin de l'utilisateur ------*/
 
-		
-		window = new InitFrame(tabUv);
-		
-		window.visible();
-		
-		
-		
+			
 
-//		/*-----Afichage nom joueur et nb credit joueur1------*/
-//		j1.setNomJoueur(nomj1);
-//		System.out.println("Le nom du joueur 1 est : "+j1.getNomJoueur());
-//		System.out.println(" Il a : "+j1.getNbCredit()+ "credits");
-//		System.out.println("Le joueur 2 a : "+j2.getNbCredit()+" credits");
-//		System.out.println();
-//		/*-----------------------------------------------*/
+		/*-----Afichage nom joueur et nb credit joueur1------*/
+		j1.setNomJoueur(nomj1);
+		System.out.println("Le nom du joueur 1 est : "+j1.getNomJoueur());
+		System.out.println(" Il a : "+j1.getNbCredit()+ "credits");
+		System.out.println("Le joueur 2 a : "+j2.getNbCredit()+" credits");
+		System.out.println();
+		/*-----------------------------------------------*/
 
 	
 		
-	//	System.out.println("Saisire le nom du joueur2 :");		
+		System.out.println("Saisire le nom du joueur2 :");		
 
-//		
-//		/*---------Cin de l'utilisateur ------*/
-//		try {
-//			in.read(buf,0,10);
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		String nomj2 = new String(buf);
-//		/*---------Fin Cin de l'utilisateur ------*/
-//
-//		j2.setNomJoueur(nomj2);
-//		System.out.println("Le nom du joueur 2 est : "+j2.getNomJoueur());
-//		System.out.println("Joueur 1 : "+j1.getNbCredit()+" credit(s)");
-//		System.out.println("Joueur 2 : "+j2.getNbCredit()+" credit(s)");
-//		System.out.println();
-//		/*-------------------------------------------------------------------*/
-//		
-//	
+		
+		/*---------Cin de l'utilisateur ------*/
+		try {
+			in.read(buf,0,10);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String nomj2 = new String(buf);
+		/*---------Fin Cin de l'utilisateur ------*/
+
+		j2.setNomJoueur(nomj2);
+		System.out.println("Le nom du joueur 2 est : "+j2.getNomJoueur());
+		System.out.println("Joueur 1 : "+j1.getNbCredit()+" credit(s)");
+		System.out.println("Joueur 2 : "+j2.getNbCredit()+" credit(s)");
+		System.out.println();
+		/*-------------------------------------------------------------------*/
+		
+	
 	}
 
 
@@ -301,10 +325,9 @@ public class Moteur {
 			{
 				choixUv=choixUv-1;
 				
-				// en attendant implementation comparaison emplacement uv 
-				j.getEtudiantActif().decrementerHeures(choixHeures);
+				
 
-				/*
+				
 				if(para=="j1")
 				{
 					//compare les uv des etudiants du joueur pour savoir si elles sont cote à cote
@@ -345,7 +368,7 @@ public class Moteur {
 										"si elle l'uv choisit n'est pas à coté d'une uv vous appartenant ");
 						}
 					}
-				}*/
+				}
 
 				/*--------------Attribution des appartenances---------------*/
 				if(tabUv[choixUv].gettHeuresJ1()>tabUv[choixUv].gettHeuresJ2())
@@ -459,7 +482,8 @@ public class Moteur {
 			{
 				for(int i=0; i<tabUv.length; i++)// on laisse 1 heure sur chaque uv par joueur
 				{
-					j.getEtudiantEnDeclin().setNbHeures(0);
+					//j.getEtudiantEnDeclin().setNbHeures(0);
+					
 					if(tabUv[i].gettAppartenance()==j.getEtudiantActif())
 					{
 						//passe l'édudiant actif en declin;

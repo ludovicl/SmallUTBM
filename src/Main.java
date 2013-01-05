@@ -9,8 +9,21 @@ public class Main {
 	{
 
 		Moteur m= new Moteur();
-		m.choixEtudiants();
 		
+		InitFrame window ;
+		
+		window = new InitFrame(Moteur.getTabUv());
+		window.visible();
+		
+		m.getJ1().setNomJoueur(window.getNomj2());
+
+		
+		m.getJ2().setNomJoueur(window.getNomj2());
+		
+		
+		m.choixEtudiants();
+
+
 		for (int i=1; i<9; i++)
 		{
 			System.out.println("TOUR : " +i );
