@@ -22,7 +22,7 @@ import javax.swing.JTextField;
 import javax.swing.JPanel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import environnement.*;
+import environnement.TypeUv;
 
 
 public class InitFrame {
@@ -78,15 +78,11 @@ public class InitFrame {
 			public void mouseReleased(MouseEvent e) {
 			    
 				frame.setVisible(false);
-				
-				/*Choix fen = new Choix();
-				fen.getF().setVisible(true);
-				fen.NomJoueur(nomJ1.getText());*/
-		
-				Plan lePlan = new Plan(tabUv);
-				lePlan.getF().setVisible(true); 
-				lePlan.setNomJoueur(nomJ1.getText());
-				lePlan.setPhoto(1);
+				frame.dispose();
+				/*Plan carte = new Plan(tabUv);
+				carte.getF().setVisible(true); 
+				carte.setNomJoueur(nomJ1.getText());
+				carte.setPhoto(1);*/
 			
 				
 			}
@@ -104,6 +100,8 @@ public class InitFrame {
 		choixCarte.addItem("Sevenans");
 		frame.getContentPane().add(choixCarte);
 		choixCarte.addItemListener(new ItemState());
+		 
+		
 		
 		JLabel lblChoixDeLa = new JLabel("Choix de la Carte :");
 		lblChoixDeLa.setFont(new Font("DejaVu Sans", Font.BOLD, 25));
@@ -147,7 +145,7 @@ public class InitFrame {
 	
 	 class ItemState implements ItemListener{
 		    public void itemStateChanged(ItemEvent e) {
-		      System.out.println("Evenement d?clench? sur : " + e.getItem());
+		      System.out.println("Evenement d�clench� sur : " + e.getItem());
 		      
 		      if(e.getItem() == "Montbeliard")
 		      {
@@ -171,6 +169,12 @@ public class InitFrame {
 		 frame.setVisible(true);
 	 }
 	 
+	 public JFrame getF(){
+			
+			return frame;
+	}
+
+	 
 	 public static String getTextField(int a){
 		 if(a == 1)
 		 {
@@ -182,16 +186,4 @@ public class InitFrame {
 		 }
 		
 	 }
-	 
-	 /*------ ajout 05/01---------------*/
-	 public String getNomj1()
-	 {
-		 return nomJ1.getName();
-	 }
-	 
-	 public String getNomj2()
-	 {
-		 return nomJ2.getName();
-	 }
-	 /*---------------------------------*/
 }

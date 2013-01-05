@@ -16,15 +16,13 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import scheduler.Moteur;
+
+import scheduler.Motor;
 import ihm.MessageBox;
 import ihm.InitFrame;
-//import ihm.Victoire;
-import environnement.CG;
-import environnement.CS;
-import environnement.Langue;
-import environnement.Stage;
-import environnement.TM;
+
+import ihm.Victoire;
+
 import environnement.TypeUv;
 
 public class Plan {
@@ -32,7 +30,7 @@ public class Plan {
 	private JFrame frame;
 	
 	/* Cadre du Joueur*/
-	private static JLabel NomJoueur;// = new JLabel("Joueur");
+	private static JLabel NomJoueur = new JLabel("Joueur");
 	private static JLabel photoJoueur =  new JLabel("Photo");
 	
 	//private JButton //tabB[]= new JButton[20];
@@ -43,7 +41,7 @@ public class Plan {
 	
 	private JTextField info;
 	
-	/* Cr�ation des UVs */
+	/* Cr���ation des UVs */
 	private static TypeUv tabUv[]= new TypeUv[20];
 	
 
@@ -484,7 +482,7 @@ public class Plan {
 		lblGeek.setBounds(825, 182, 100, 23);
 		frame.getContentPane().add(lblGeek);
 		
-		JButton ChangerEtudiant = new JButton("Changer d'�tudiant");
+		JButton ChangerEtudiant = new JButton("Changer d'���tudiant");
 		ChangerEtudiant.setBounds(696, 305, 218, 36);
 		frame.getContentPane().add(ChangerEtudiant);
 		
@@ -521,35 +519,27 @@ public class Plan {
 		frame.getContentPane().add(separator_2);
 		
 		JButton FinTour = new JButton("Fin de Tour");
-	/*	FinTour.addMouseListener(new MouseAdapter() {
+		FinTour.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				
-					Moteur.TourPlus();
-					if(Moteur.getTour() < 18)
-					{	
-						if(Moteur.setTour() == 1)
-						{
-							Map.setPhoto(1);
-							System.out.println("image 1");
-							setNomJoueur(InitFrame.getTextField(1));
-						}
-						else if(Moteur.setTour() == 2)
-						{
-							System.out.println("image 2");
-							Map.setPhoto(2);
-							setNomJoueur(InitFrame.getTextField(2));
-						}
-					}
-					else
+		
+					Motor.incrementerNbTour();
+					System.out.println(Motor.setTour());
+					if(Motor.setTour() == 1)
 					{
-						System.out.println("Fin de partie");
-						Victoire Fin = new Victoire();
-						Fin.getF().setVisible(true);
-						
+						Plan.setPhoto(1);
+						System.out.println("image 1");
+						Plan.setNomJoueur(InitFrame.getTextField(1));
+					}
+					else if(Motor.setTour() == 2)
+					{
+						System.out.println("image 2");
+						Plan.setPhoto(2);
+						Plan.setNomJoueur(InitFrame.getTextField(2));
 					}
 			}
-		});*/
+			
+		});
 		FinTour.setBounds(696, 394, 218, 36);
 		frame.getContentPane().add(FinTour);
 		
@@ -568,7 +558,7 @@ public class Plan {
 		frame.getContentPane().add(info);
 		info.setColumns(10);
 		
-		JButton btnRorganiserSesHeures = new JButton("R�organiser ses heures");
+		JButton btnRorganiserSesHeures = new JButton("Reorganiser");
 		btnRorganiserSesHeures.setBounds(696, 352, 218, 36);
 		frame.getContentPane().add(btnRorganiserSesHeures);
 	}

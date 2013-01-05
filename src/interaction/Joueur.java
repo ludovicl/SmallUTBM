@@ -57,7 +57,7 @@ public class Joueur {
 
 	public void setNomJoueur (String nom)
 	{
-		this.nomJoueur=nom;
+		nomJoueur=nom;
 
 	}
 

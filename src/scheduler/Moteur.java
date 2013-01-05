@@ -19,14 +19,14 @@ public class Moteur {
 	/*---Creation des Joueurs j est un object intermediaire et n'est pas utilisé--*/
 	private Joueur j1, j2, j;
 	/*--------------------------*/
-	
-	
+
+
 	/*--------Tablau d'uv !!!!!!!Pensez à bien le mettre à la bonne taille--- */
 	private static TypeUv tabUv[]= new TypeUv[20];
 	/*------------------------------*/
 
 
-	
+
 	private static int nbTour=0;//nombre de tour joué
 
 	private Carte ca ;
@@ -34,19 +34,19 @@ public class Moteur {
 	{
 		return tabUv;
 	}
-	
+
 	public Joueur getJ1()
 	{
 		return j1;
 	}
-	
+
 	public Joueur getJ2()
 	{
 		return j2;
 	}
-	
-	
-	
+
+
+
 	public Moteur ()
 	{	
 		//2 stages 
@@ -154,17 +154,17 @@ public class Moteur {
 		/*------------------------------------------------------------------------------*/		
 
 		/*----------Definition noms de joueurs et selection des etudiants-------------------------*/
-		
-		
-	
-	
-		
+
+
+
+
+
 		j=new Joueur();
 
 		j1 = new Joueur();
 		j2 = new Joueur();	
 
-		
+
 
 		System.out.println(ca.isVoisin(stage1, stage2));
 
@@ -183,7 +183,7 @@ public class Moteur {
 		String nomj1 = new String(buf);
 		//---------Fin Cin de l'utilisateur ------*/
 
-			
+
 
 		/*-----Afichage nom joueur et nb credit joueur1------*/
 		j1.setNomJoueur(nomj1);
@@ -193,11 +193,11 @@ public class Moteur {
 		System.out.println();
 		/*-----------------------------------------------*/
 
-	
-		
+
+
 		System.out.println("Saisire le nom du joueur2 :");		
 
-		
+
 		/*---------Cin de l'utilisateur ------*/
 		try {
 			in.read(buf,0,10);
@@ -214,8 +214,8 @@ public class Moteur {
 		System.out.println("Joueur 2 : "+j2.getNbCredit()+" credit(s)");
 		System.out.println();
 		/*-------------------------------------------------------------------*/
-		
-	
+
+
 	}
 
 
@@ -324,10 +324,10 @@ public class Moteur {
 			if (choixHeures<=j.getEtudiantActif().getnombreDeHeures())
 			{
 				choixUv=choixUv-1;
-				
-				
 
-				
+
+
+
 				if(para=="j1")
 				{
 					//compare les uv des etudiants du joueur pour savoir si elles sont cote à cote
@@ -483,7 +483,7 @@ public class Moteur {
 				for(int i=0; i<tabUv.length; i++)// on laisse 1 heure sur chaque uv par joueur
 				{
 					//j.getEtudiantEnDeclin().setNbHeures(0);
-					
+
 					if(tabUv[i].gettAppartenance()==j.getEtudiantActif())
 					{
 						//passe l'édudiant actif en declin;
@@ -494,7 +494,7 @@ public class Moteur {
 						else if (j==j2)
 							tabUv[i].setHeuresJ2(1);
 					}
-					
+
 					//selection du nouvel étudiant
 					j1.selectionEtudiant(choix1,j.getTabEtudiantIndex(choix1-1));
 					j1.decrementerNbCredit(choix1);
@@ -535,5 +535,3 @@ public class Moteur {
 
 
 }
-
-

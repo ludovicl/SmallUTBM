@@ -1,6 +1,6 @@
-import ihm.InitFrame;
+import ihm.*;
 
-import scheduler.Moteur;
+import scheduler.*;
 
 
 public class Main {
@@ -8,34 +8,30 @@ public class Main {
 	public static void main (String[] args)
 	{
 
-		Moteur m= new Moteur();
+		Motor m= new Motor();
 		
-		InitFrame window ;
-		
-		window = new InitFrame(Moteur.getTabUv());
-		window.visible();
-		
-		m.getJ1().setNomJoueur(window.getNomj2());
 
-		
-		m.getJ2().setNomJoueur(window.getNomj2());
-		
-		
-		m.choixEtudiants();
+		InitFrame window = new InitFrame(Motor.tabUv);
 
-
-		for (int i=1; i<9; i++)
+		while(window.getF().isVisible())
 		{
-			System.out.println("TOUR : " +i );
-			Moteur.incrementerNbTour();
-			m.choixUv("j1");
-			m.choixNouveauEtudiant("j1");
-			m.choixUv("j2");
-			m.choixNouveauEtudiant("j2");
-			m.finTour();
-		}
 
-		m.testVictoire();
+		}
+		window.visible();
+
+		m.incrementerNbTour();
+		m.affecteNomJ1(window.getTextField(1));
+		m.affecteNomJ2(window.getTextField(2));
+		
+		Plan carte = new Plan(m.tabUv);
+		carte.getF().setVisible(true); 
+		carte.setNomJoueur(m.getJ1().getNomJoueur());
+		carte.setPhoto(1);
+	
+		
+		/*System.out.println(m.getJ1().getNomJoueur());
+		System.out.println(m.getJ2().getNomJoueur());*/
+		
 	}
 
 

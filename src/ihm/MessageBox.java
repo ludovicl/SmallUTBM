@@ -16,6 +16,7 @@ public class MessageBox {
 	private JFrame frame;
 	private JLabel nomUV = new JLabel("Null");
 	private JLabel lblHeuresNecessaires;
+	private int HeuresNecessaires;
 	private JLabel label;
 	private JLabel lblEtudier;
 	private JLabel Type;
@@ -83,6 +84,8 @@ public class MessageBox {
 		
 		JSpinner spinner = new JSpinner();
 		spinner.setBounds(102, 92, 46, 23);
+		 
+	
 		frame.getContentPane().add(spinner);
 		
 		lblEtudier = new JLabel("Etudier");
