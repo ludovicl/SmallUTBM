@@ -22,7 +22,7 @@ import javax.swing.JTextField;
 import javax.swing.JPanel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import environnement.TypeUv;
+import environnement.*;
 
 
 public class InitFrame {
@@ -70,7 +70,7 @@ public class InitFrame {
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		 	 
+		frame.setResizable(false); 	 
 		
 		JButton btnLancerLaPartie = new JButton("Lancer la partie");
 		btnLancerLaPartie.addMouseListener(new MouseAdapter() {
@@ -94,7 +94,7 @@ public class InitFrame {
 		
 		JComboBox choixCarte = new JComboBox();
 		choixCarte.setToolTipText(" ");
-		choixCarte.setBounds(410, 195, 152, 24);
+		choixCarte.setBounds(410, 220, 152, 24);
 		choixCarte.addItem("Belfort");
 		choixCarte.addItem("Montbeliard");
 		choixCarte.addItem("Sevenans");
@@ -105,22 +105,22 @@ public class InitFrame {
 		
 		JLabel lblChoixDeLa = new JLabel("Choix de la Carte :");
 		lblChoixDeLa.setFont(new Font("DejaVu Sans", Font.BOLD, 25));
-		lblChoixDeLa.setBounds(87, 177, 280, 53);
+		lblChoixDeLa.setBounds(87, 203, 280, 53);
 		frame.getContentPane().add(lblChoixDeLa);
 		
 
-		Image.setBounds(657, 161, 329, 196);
+		Image.setBounds(657, 230, 329, 196);
 		frame.getContentPane().add(Image); 
 		Image.setIcon(new ImageIcon("Images//Belfort.jpg"));
 		
 		JLabel ban = new JLabel( new ImageIcon("Images//icon.jpg"));
 		ban.setText("Banniere");
-		ban.setBounds(266, 12, 477, 102);
+		ban.setBounds(206, 8, 614, 186);
 		frame.getContentPane().add(ban);
 		
-		JLabel lblNewLabel_1 = new JLabel("Aper\u00E7u");
+		JLabel lblNewLabel_1 = new JLabel("Apercu");
 		lblNewLabel_1.setFont(new Font("DejaVu Sans", Font.BOLD, 25));
-		lblNewLabel_1.setBounds(694, 131, 141, 30);
+		lblNewLabel_1.setBounds(694, 200, 141, 30);
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JLabel lblJoueurs = new JLabel("Joueurs");
@@ -139,13 +139,17 @@ public class InitFrame {
 		nomJ2.setBounds(410, 364, 174, 31);
 		frame.getContentPane().add(nomJ2);
 		nomJ2.setColumns(10);
+		
+		JLabel Fond =  new JLabel( new ImageIcon("Images//Fond.jpg"));
+		Fond.setBounds(0, 0, 984, 562);
+		frame.getContentPane().add(Fond);
 	}
 	 
 		/* Impl?mentation de l'aper?u  */
 	
 	 class ItemState implements ItemListener{
 		    public void itemStateChanged(ItemEvent e) {
-		      System.out.println("Evenement dï¿½clenchï¿½ sur : " + e.getItem());
+		      System.out.println("Evenement déclenché sur : " + e.getItem());
 		      
 		      if(e.getItem() == "Montbeliard")
 		      {

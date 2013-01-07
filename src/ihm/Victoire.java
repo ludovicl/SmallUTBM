@@ -1,5 +1,7 @@
 package ihm;
 
+import interaction.Joueur;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -15,7 +17,7 @@ import scheduler.*;
 public class Victoire {
 
 	private JFrame frame;
-
+	private JLabel gagnant = new JLabel("Joueur 1 / 2");
 	/**
 	 * Launch the application.
 	 */
@@ -60,10 +62,10 @@ public class Victoire {
 		lblGagnant.setBounds(40, 134, 141, 31);
 		frame.getContentPane().add(lblGagnant);
 		
-		JLabel lblNewLabel = new JLabel("Joueur 1 / 2");
-		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		lblNewLabel.setBounds(253, 131, 162, 36);
-		frame.getContentPane().add(lblNewLabel);
+		
+		gagnant.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		gagnant.setBounds(253, 131, 162, 36);
+		frame.getContentPane().add(gagnant);
 		
 		JButton btnQuitter = new JButton("Quitter");
 		btnQuitter.addMouseListener(new MouseAdapter() {
@@ -78,7 +80,7 @@ public class Victoire {
 		JButton btnNouvellePartie = new JButton("Nouvelle Partie");
 		btnNouvellePartie.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Moteur NouvellePartie = new Moteur();
+				Motor NouvellePartie = new Motor();
 			}
 		});
 		btnNouvellePartie.setBounds(217, 225, 141, 29);
@@ -88,5 +90,9 @@ public class Victoire {
 	public JFrame getF(){
 		
 		return frame;
+	}
+	
+	public void setGagnant(Joueur j){
+		gagnant.setText(j.getNomJoueur());
 	}
 }

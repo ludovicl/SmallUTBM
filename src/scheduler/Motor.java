@@ -28,7 +28,7 @@ public class Motor {
 		//2 stages 
 		TypeUv stage1 = new Stage("ST40",1);
 		//TypeUv stage2 = new Stage("st50",21);
-		TypeUv stage2 = new Stage("st50",2);//car bug avec 21 en number
+		TypeUv stage2 = new Stage("ST50",2);//car bug avec 21 en number
 
 		//3 CG
 		//TypeUv cg1 = new CG("DR02",6);
@@ -58,7 +58,13 @@ public class Motor {
 
 
 		tabUv[0]=stage1;
+		tabUv[0].setHeuresJ1(0);
+		tabUv[0].setHeuresJ2(0);
+		
 		tabUv[1]=stage2;
+		tabUv[1].setHeuresJ1(0);
+		tabUv[1].setHeuresJ2(0);
+		
 		tabUv[2]=cg1;
 		tabUv[3]=cg2;
 		tabUv[4]=cg3;
@@ -110,6 +116,10 @@ public class Motor {
 		nbTour++;
 	}
 	
+	public static int getTour() {
+		return nbTour;
+	}
+	
 	public static int setTour(){
 		if( nbTour%2 == 0)
 		{
@@ -121,20 +131,101 @@ public class Motor {
 		}
 	}
 	
+	public void PriseUv (int heures, int indice, int j) {
+		/*if(j == 1)
+		{
+			tabUv[indice]. addHeuresJ1(heures);
+			tabUv[indice].setPossesseur(J1);
+			System.out.println("Joueur 1 a étudié l'UV " + tabUv[indice].getNomUv() + " pendant " + heures +" heures ");
+		}
+		else if(j == 2)
+		{
+			tabUv[indice]. addHeuresJ2(heures);
+			System.out.println("Joueur 2 a étudié l'UV " + tabUv[indice].getNomUv() + " pendant " + heures +" heures ");
+		}*/
+		
+		if(j == 1)
+		{
+			if(tabUv[indice].getHeuresJ2() < j1.getHeures())
+			{
+				tabUv[indice].addHeuresJ1(heures);
+				tabUv[indice].setPossesseur(j1);
+				System.out.println("Joueur 1 a étudié l'UV " + tabUv[indice].getNomUv() + " pendant " + heures +" heures ");
+				
+			}
+			else
+			{
+				System.out.println("vous n'avez pas assez d'heures pour prendre cette UV");
+				
+			}
+		}
+		else if(j == 2)
+		{
+			if(tabUv[indice].getHeuresJ1() < j2.getHeures())
+			{
+				tabUv[indice].addHeuresJ2(heures);
+				tabUv[indice].setPossesseur(j2);
+				System.out.println("Joueur 2 a étudié l'UV " + tabUv[indice].getNomUv() + " pendant " + heures +" heures ");
+				
+			}
+			else
+			{
+				System.out.println("vous n'avez pas assez d'heures pour prendre cette UV");
+				
+			}
+		}
+	}
 	
-	public void testVictoire()
+	public void AjusteHeures(int moins, int j) {
+		if(j == 1)
+		{
+			 j1.HeuresMoins(moins);
+		}
+		else if(j == 2)
+		{
+			j2.HeuresMoins(moins);
+		}
+	}
+	
+	public int getScoreJ1() {
+		return j1.getNbCredit();
+	}
+	
+	public int getScoreJ2() {
+		return j2.getNbCredit();
+	}
+	
+	public void Score() {
+		int i;
+		for (i=0;i<20;i++)
+		{
+			if(tabUv[i].getPossesseur() == j1)
+			{
+				j1.setNbCredit(j1.getNbCredit() + tabUv[i].getPrix());
+				System.out.println("Test prise");
+				System.out.println(tabUv[i].getNomUv());
+			}
+			else if(tabUv[i].getPossesseur() == j2)
+			{
+				j2.setNbCredit(j2.getNbCredit() + tabUv[i].getPrix());
+				System.out.println("Test prise");
+				System.out.println(tabUv[i].getNomUv());
+			}
+		}
+	}
+	public Joueur testVictoire()
 	{
 		if(j1.getNbCredit()<j2.getNbCredit())
 		{
-			System.out.println(j2.getNomJoueur() +" vous avez gagné !");
+			return j2;
 		}
 		else if(j1.getNbCredit()>j2.getNbCredit())
 		{
-			System.out.println(j1.getNomJoueur() +" vous avez gagné !");
+			return j1;
 		}
 		else
 		{
-			System.out.println("Egualite entre les joueurs !");
+			return null;
 		}	
 
 

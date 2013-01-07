@@ -9,6 +9,8 @@ public class Joueur {
 
 	private int nbCredit=6;
 	private String nomJoueur;
+	// En attendant de faire étudiant
+	private int nombreHeures = 5;
 
 	public Etudiant etudiantEnDeclin;
 	public Etudiant etudiantActif;
@@ -34,7 +36,22 @@ public class Joueur {
 	{
 		nbCredit=cred;
 	}
-
+	
+	/* En attendant Etudiant */
+	public void HeuresMoins(int a) {
+		nombreHeures -= a;
+	}
+	
+	public int getHeures() {
+		return nombreHeures;
+	}
+	
+	public void setHeures(int a) {
+		nombreHeures = a;
+	}
+	
+	
+	
 	public Joueur() //creation tableau Etudiant dans le constructeur
 	{
 		tabEtudiant[0]=unTC;	

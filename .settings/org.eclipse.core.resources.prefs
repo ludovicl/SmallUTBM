@@ -1,5 +1,5 @@
 eclipse.preferences.version=1
-encoding//src/Interface/Choix.java=UTF-8
-encoding//src/ihm/InitFrame.java=UTF-8
+encoding//src/Main.java=UTF-8
+encoding//src/ihm/MessageBox.java=UTF-8
 encoding//src/ihm/Plan.java=UTF-8
 encoding//src/scheduler/Moteur.java=UTF-8

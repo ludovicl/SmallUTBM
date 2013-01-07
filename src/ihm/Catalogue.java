@@ -1,5 +1,4 @@
-package Interface;
-
+package ihm;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -9,6 +8,8 @@ import java.awt.EventQueue;
 import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.JInternalFrame;
 import javax.swing.GroupLayout;
@@ -22,30 +23,31 @@ import javax.swing.JCheckBox;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JButton;
-import java.awt.Font;
 
 
-public class Choix extends JInternalFrame implements ActionListener {
+public class Catalogue extends JInternalFrame implements ActionListener, ItemListener {
 
 	private JFrame frame;
-	private static JLabel NomJoueur;
 	JButton LBT[]= new JButton[2];
 	JCheckBox LCB[] = new JCheckBox[6];
 	String tabStudent[] = {"TC", "Master", "Licence", "Etranger", "Prepa", "DUT"};
-	String tabCarac[] = {"Pistone", "Geek", "Possedant une voiture", "Alcoolique du BDF", "Possï¿½dant des semestres sup'","Faisant partie de l'AE", "Philateliste"};
+	String tabCarac[] = {"Pistoné", "Geek", "B.D.Teufeur", "Semestres sup'","A.E.","B.D.S.", "Philateliste","Covoitureur","Club Welcome"};
 	
 	String SavTabStudent[] = tabStudent;
 	String SavtabCarac[] = tabCarac;
-	int SaveValS[] = new int[6];
-	int SaveValC[] = new int[7];
+	String SaveValS[] = {"","","","","","",""};
+	String SaveValC[] = {"","","","","","",""};
+	String SaveValP[] = {"1","2","3","4","5","6"};
+	
 	/**
 	 * Launch the application.
 	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Choix window = new Choix();
+					Catalogue window = new Catalogue();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -57,16 +59,15 @@ public class Choix extends JInternalFrame implements ActionListener {
 	/**
 	 * Create the application.
 	 */
-	public Choix() {
+	public Catalogue() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 610, 473);
-		frame.setLocationRelativeTo(null);
+		frame.setBounds(100, 100, 600, 400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
-				frame.getContentPane().setLayout(null);
+		frame.getContentPane().setLayout(null);
 		
 		//les numeros
 				JPanel Numeros = new JPanel();
-				Numeros.setBounds(45, 82, 41, 260);
+				Numeros.setBounds(0, 11, 41, 260);
 				frame.getContentPane().add(Numeros);
 				Numeros.setLayout(null);
 				
@@ -79,9 +80,9 @@ public class Choix extends JInternalFrame implements ActionListener {
 					Lnum[j-1].setBounds(x, y+(40*(j-1)), 12, 20);
 					Numeros.add(Lnum[j-1]);
 				}
-				//les ï¿½tudiants
+				//les étudiants
 				JPanel Etudiants = new JPanel();
-				Etudiants.setBounds(86, 82, 121, 260);
+				Etudiants.setBounds(41, 11, 121, 260);
 				frame.getContentPane().add(Etudiants);
 				Etudiants.setLayout(null);
 				
@@ -94,10 +95,9 @@ public class Choix extends JInternalFrame implements ActionListener {
 				while(i>0) {
 					
 					valeur=generateVal(i);
-					valeur=generateVal(i);
-					SaveValS[j]= valeur;
 					L[j]=new JLabel(tabStudent[valeur-1]);
 					L[j].setBounds(x, y+(40*j), larg, haut);
+					SaveValS[j]= L[j].getText();
 					Etudiants.add(L[j]);
 					tabStudent = suppStu (valeur-1,tabStudent);
 					j++;
@@ -107,7 +107,7 @@ public class Choix extends JInternalFrame implements ActionListener {
 				
 			//les carracteristiques
 				JPanel Qualifications = new JPanel();
-				Qualifications.setBounds(206, 82, 200, 260);
+				Qualifications.setBounds(161, 11, 200, 260);
 				frame.getContentPane().add(Qualifications);
 				Qualifications.setLayout(null);
 						
@@ -119,10 +119,10 @@ public class Choix extends JInternalFrame implements ActionListener {
 				int valeurC =0 ;
 				while(i>0) {
 					valeurC=generateVal(i);
-					SaveValC[j]= valeurC;
 					LCarac[j]=new JLabel(tabCarac[valeurC-1]);
 					LCarac[j].setBounds(x, y+(40*j), larg, haut);
 					Qualifications.add(LCarac[j]);
+					SaveValC[j]=LCarac[j].getText();
 					tabCarac = suppStu (valeurC-1,tabCarac);
 					j++;
 					i--;
@@ -131,25 +131,24 @@ public class Choix extends JInternalFrame implements ActionListener {
 			//prix
 				
 				JPanel Prix = new JPanel();
-				Prix.setBounds(445, 82, 35, 260);
+				Prix.setBounds(400, 11, 35, 260);
 				frame.getContentPane().add(Prix);
 				Prix.setLayout(null);
 				
 				x=10; y=10; larg=57; haut=26;
 				j=6;
 				JLabel Lprix[] = new JLabel[6];
-				
 				for(j=1;j<=6;j++){
 					Lprix[j-1]=new JLabel(""+j);
 					Lprix[j-1].setBounds(x, y+(40*(j-1)), 12, 20);
 					Prix.add(Lprix[j-1]);
 				}
 				
-				/* Pour crï¿½er les CheckBox */
+				/* Pour créer les CheckBox */
 				
 				JPanel Choix = new JPanel();
 				Choix.setLayout(null);
-				Choix.setBounds(479, 82, 41, 260);
+				Choix.setBounds(434, 11, 41, 260);
 				frame.getContentPane().add(Choix);
 				
 				
@@ -170,24 +169,20 @@ public class Choix extends JInternalFrame implements ActionListener {
 				LCB[5].setEnabled(false);
 				
 				
-				LCB[0].addActionListener(this);
-				LCB[1].addActionListener(this);
-				LCB[2].addActionListener(this);
-				LCB[3].addActionListener(this);
-				LCB[4].addActionListener(this);
+				LCB[0].addItemListener(this);
+				LCB[1].addItemListener(this);
+				LCB[2].addItemListener(this);
+				LCB[3].addItemListener(this);
+				LCB[4].addItemListener(this);
+				LCB[5].addItemListener(this);
 			
 				
 			//Les Buttons
 				
 				JPanel Buttons = new JPanel();
-				Buttons.setBounds(174, 384, 245, 40);
+				Buttons.setBounds(316, 306, 245, 40);
 				frame.getContentPane().add(Buttons);
 				Buttons.setLayout(null);
-				
-				JLabel NomJoueur = new JLabel("NomJoueur");
-				NomJoueur.setFont(new Font("Tahoma", Font.PLAIN, 17));
-				NomJoueur.setBounds(259, 11, 121, 40);
-				frame.getContentPane().add(NomJoueur);
 				
 				
 				for(j=1;j<=2;j++){
@@ -197,73 +192,101 @@ public class Choix extends JInternalFrame implements ActionListener {
 				}
 				LBT[0].setText("Valider");
 				LBT[1].setText("Annuler");
+				LBT[0].addActionListener(this);
+				LBT[1].addActionListener(this);
 	}
-
 	@Override
-	public void actionPerformed(ActionEvent e)
-	{
+	public void itemStateChanged(ItemEvent evt) {
+		// TODO Auto-generated method stub
 		JCheckBox Jbox = new JCheckBox();
-		Jbox = (JCheckBox ) e.getSource();
+		Jbox = (JCheckBox ) evt.getSource();
 		if ( Jbox.isSelected() == true && Jbox == LCB[0]) {
-			System.out.println("LCB 2" + SavTabStudent[SaveValS[1]] + SavtabCarac[SaveValC[1]] );
-			LCB[1].setEnabled(true);
+		
+		LCB[1].setEnabled(true);
+		System.out.println(SaveValS[0] + " " + SaveValC[0]);
+	}
+	else if(Jbox==LCB[0]) {
+		for(int i=1;i<6;++i) {
+			System.out.println("jouj li khedama");
+			LCB[i].setEnabled(false);
+			LCB[i].setSelected(false);
 		}
-		else if(Jbox==LCB[0]) {
-			for(int i=1;i<6;++i) {
+	}
+		else if ( Jbox.isSelected() == true && Jbox == LCB[1]) {
+			
+				LCB[2].setEnabled(true);
+				System.out.println(SaveValS[1] + " " + SaveValC[1]);
+								
+		}
+		else if(Jbox==LCB[1]){
+			for(int i=2;i<6;++i){
 				LCB[i].setEnabled(false);
 				LCB[i].setSelected(false);
 			}
 		}
-			else if ( Jbox.isSelected() == true && Jbox == LCB[1]) {
-				System.out.println("LCB 2" + SavTabStudent[SaveValS[1]] + SavtabCarac[SaveValC[1]] );
-					LCB[2].setEnabled(true);
+			else if ( Jbox.isSelected() == true && Jbox == LCB[2]) {
+				
+				LCB[3].setEnabled(true);
+				System.out.println(SaveValS[2] + " " + SaveValC[2]);
 				
 			}
-			else if(Jbox==LCB[1]){
-				for(int i=2;i<6;++i){
-					LCB[i].setEnabled(false);
-					LCB[i].setSelected(false);
-				}
+				else if(Jbox==LCB[2]){
+					for(int i=3;i<6;++i){
+						LCB[i].setEnabled(false);
+						LCB[i].setSelected(false);
+					}
 			}
-				else if ( Jbox.isSelected() == true && Jbox == LCB[2]) {
+				else if ( Jbox.isSelected() == true && Jbox == LCB[3]) {
 					
-					LCB[3].setEnabled(true);
-					System.out.println("LCB 2" + SavTabStudent[SaveValS[2]] + SavtabCarac[SaveValC[2]] ); // pas encore au point !
+					LCB[4].setEnabled(true);
+					System.out.println(SaveValS[3] + " " + SaveValC[3]);
+					
 				}
-					else if(Jbox==LCB[2]){
-						for(int i=3;i<6;++i){
+					else if(Jbox==LCB[3]){
+						for(int i=4;i<6;++i){
 							LCB[i].setEnabled(false);
 							LCB[i].setSelected(false);
 						}
-				}
-					else if ( Jbox.isSelected() == true && Jbox == LCB[3]) {
-						
-						LCB[4].setEnabled(true);
-						
 					}
-						else if(Jbox==LCB[3]){
-							for(int i=4;i<6;++i){
-								LCB[i].setEnabled(false);
-								LCB[i].setSelected(false);
-							}
-						}
-							else if ( Jbox.isSelected() == true && Jbox == LCB[4]) {
+						else if ( Jbox.isSelected() == true && Jbox == LCB[4]) {
+							
+							LCB[5].setEnabled(true);
+							System.out.println(SaveValS[4] + " " + SaveValC[4]);
+							
+														
+					}
+							else if(Jbox==LCB[4]){
 								
-								LCB[5].setEnabled(true);
+									LCB[5].setEnabled(false);
+									LCB[5].setSelected(false);
+							
+							}
+								else if ( Jbox.isSelected() == true && Jbox == LCB[5]) {
+								
+									System.out.println(SaveValS[5] + " " + SaveValC[5]);
 							
 						}
-								else if(Jbox==LCB[4]){
+								else if(Jbox==LCB[5]){
 									
-										LCB[5].setEnabled(false);
-										LCB[5].setSelected(false);
-								
-								}
-		/*Ajouter les actions performed par les Boutons*/
-		
-		
+									System.out.println(SaveValS[5] + " 2 " + SaveValC[5]);
+							
+							}
+	}
+	/*Actions performed by the Buttons*/
+	@Override
+	public void actionPerformed(ActionEvent e)
+	{
+		JButton BT = new JButton();
+		BT = (JButton ) e.getSource();
+		if(BT==LBT[0]){
+			System.out.println("Valider");
+		}
+		if ( BT == LBT[1]){
+			System.out.println("Annuler");
+		}
 	}
 	
-/* Pour gï¿½nerer les valeur */
+/* Pour génerer les valeur */
 	
 	public int generateVal(int cpt)
 	 
@@ -278,7 +301,7 @@ public class Choix extends JInternalFrame implements ActionListener {
 	
 	public String[] suppStu (int valeur,String tabStudent[]){
 		int i,j=0;
-		String tab[]={"","","","","","",""};
+		String tab[]={"","","","","","","","",""};
 		
 		for(i=0;i < tabStudent.length;++i){
 			if (tabStudent[i]!=tabStudent[valeur]){
@@ -289,12 +312,10 @@ public class Choix extends JInternalFrame implements ActionListener {
 		return tab;
 	}
 	
-	public JFrame getF(){
+	 public JFrame getF(){
 			
 			return frame;
-		}
-	
-	public static void NomJoueur(String a){
-		NomJoueur.setText(a);
 	}
+
+
 }
