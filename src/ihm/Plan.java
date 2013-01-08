@@ -38,8 +38,7 @@ public class Plan {
 	//private JButton //tabB[]= new JButton[20];
 	
 	private MessageBox tabM[] = new MessageBox[20];
-	private static JProgressBar progressBar = new JProgressBar();
-
+	
 	// Attributs indiquant les informations de timing au main
 	private boolean prise;
 	private static boolean fini;
@@ -48,8 +47,10 @@ public class Plan {
 	private JTextField info;
 	private JLabel lblScoreJoueur = new JLabel("Score :                    Joueur 1 :  25                     Joueur : 31");
 	
-	/* Cr���ation des UVs */
+	/* Cr�ation des UVs */
 	private static TypeUv tabUv[]= new TypeUv[20];
+	private static JProgressBar progressBar = new JProgressBar();
+
 	
 
 	/* Stage */
@@ -531,7 +532,7 @@ public class Plan {
 		});
 		FinDePartie.setBounds(696, 440, 218, 36);
 		frame.getContentPane().add(FinDePartie);
-		
+			
 		progressBar.setBounds(10, 530, 170, 14);
 		frame.getContentPane().add(progressBar);
 		
@@ -559,7 +560,6 @@ public class Plan {
 			public void mouseReleased(MouseEvent e) {
 					fini = true;
 					Motor.incrementerNbTour();
-					System.out.println(Motor.getTour());
 					if(Motor.setTour() == 1)
 					{
 						Plan.setPhoto(1);
@@ -690,6 +690,8 @@ public class Plan {
 		System.out.println("pnb : "+pnb);
 		progressBar.setValue(pnb);
 	}       
+
+	
 	
 	
 	

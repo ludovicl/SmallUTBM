@@ -290,7 +290,7 @@
 //			j=j2;
 //		}
 //
-//		while (j.etudiantActif.getnombreDeHeures()>0)// tant que le joueur a des credits
+//		while (j.etudiantActif.getnombreDeHeures()>0)// tant que le joueur a des heures
 //		{
 //			System.out.println(" Nb heures joueur 1 : "+j1.getEtudiantActif().getDescription()+j1.getEtudiantActif().getnombreDeHeures());
 //			System.out.println(" Nb heures joueur 2 : "+j2.getEtudiantActif().getDescription()+j2.getEtudiantActif().getnombreDeHeures());

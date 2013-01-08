@@ -47,15 +47,7 @@ public class TypeUv
 		return possesseur;
 	}
 	
-	public void setPossesseur(Joueur etu)
-	{
-		Possesseur=etu;
-	}
 	
-	public Joueur getPossesseur()
-	{
-		return Possesseur;
-	}
 	
 	public void addHeuresJ1(int para)
 	{

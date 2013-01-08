@@ -95,6 +95,10 @@ public class Joueur {
 		etudiantActif=etu;
 		tabEtudiant=Etudiant.reorganiserTableau(tabEtudiant, choix);	
 	}
+	
+	public void setEtudiantActif(Etudiant a) {
+		etudiantActif = a;
+	}
 
 	
 	public Etudiant getEtudiantActif ()
