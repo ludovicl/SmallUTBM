@@ -77,7 +77,7 @@ public class MessageBox {
 		label.setBounds(197, 52, 67, 28);
 		frame.getContentPane().add(label);
 		
-		// Boutons d'interaction avec la fenêtre MessageBox
+		// Boutons d'interaction avec la fenï¿½tre MessageBox
 		
 		btnValider.addMouseListener(new MouseAdapter() {
 			@Override
@@ -101,7 +101,7 @@ public class MessageBox {
 		btnAnnuler.setBounds(236, 178, 89, 23);
 		frame.getContentPane().add(btnAnnuler);
 		
-		// Création d'un JSpinner limité entre 0 et le maximum d'heures disponible
+		// Crï¿½ation d'un JSpinner limitï¿½ entre 0 et le maximum d'heures disponible
 		SpinnerNumberModel sm = new SpinnerNumberModel(0, 0, heuresJ, 1);
 		spinner = new JSpinner(sm);
 		spinner.setBounds(102, 92, 46, 23);
@@ -182,7 +182,8 @@ public class MessageBox {
 	public int waitForIt() {
 		while(this.getF().isVisible() == true )
 		{
-			
+			System.out.println(" ");
+
 		}
 		return this.getSpinner();
 	}

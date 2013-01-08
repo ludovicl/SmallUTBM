@@ -20,6 +20,7 @@ public class Motor {
 	public static TypeUv tabUv[]= new TypeUv[20];
 
 	private static int nbTour=0;
+	private static int nbTourJoueurs=0;
 
 	private Carte ca ;
 
@@ -160,77 +161,48 @@ public class Motor {
 	{
 		nbTour++;
 	}
+	
+	public static void incrementerNbTourJoueur()
+	{
+		nbTourJoueurs++;
+	}
+
 
 	public static int getTour() {
 		return nbTour;
 	}
 
 	public static int setTour(){
-		if( nbTour%2 == 0)
-		{
-			return 2;
-		}
-		else
+		if( nbTourJoueurs%2 == 0)
 		{
 			return 1;
 		}
+		else
+		{
+			return 2;
+		}
 	}
 
-	/*public void PriseUv (int heures, int indice, int j) {
-		if(j == 1)
-		{
-
-			if(tabUv[indice].getHeuresJ2() < j1.getHeures())
-			{
-				tabUv[indice].addHeuresJ1(heures);
-				tabUv[indice].setPossesseur(j1);
-				System.out.println("Joueur 1 a étudié l'UV " + tabUv[indice].getNomUv() + " pendant " + heures +" heures ");
-
-			}
-			else
-			{
-				System.out.println("vous n'avez pas assez d'heures pour prendre cette UV");
-
-			}
-		}
-		else if(j == 2)
-		{
-			if(tabUv[indice].getHeuresJ1() < j2.getHeures())
-			{
-				tabUv[indice].addHeuresJ2(heures);
-				tabUv[indice].setPossesseur(j2);
-				System.out.println("Joueur 2 a étudié l'UV " + tabUv[indice].getNomUv() + " pendant " + heures +" heures ");
-
-			}
-			else
-			{
-				System.out.println("vous n'avez pas assez d'heures pour prendre cette UV");
-
-			}
-		}
-	}*/
-
+	
+	// Méthode Prise des Uvs
 	public void PriseUv(int heures, int indice, int j) {
-		System.out.println(" TEST TTTTTTTT :" +j1.getEtudiantActif().getnombreDeHeures());
-		System.out.println(" TEST TTTTTTTT2 :" +j2.getEtudiantActif().getnombreDeHeures());
 
 		if(j == 1)
 		{
 			
-			if (heures<=j1.getEtudiantActif().getnombreDeHeures())
+			if (heures<=j1.getEtudiantActif().getnombreDeHeures())				// Si l'étudiant a assez d'heures pour prendre l'UV
 			{
 				
 				for (int i=0; i<tabUv.length;i++)
 				{
-					//si l'uv à coté appartient à un des etudiants ou si c'est le 1er tour
+					// Si l'uv est voisine à une autre appartenant à l'étudiant ou si c'est le premier tour
 					if(tabUv[i].gettAppartenance()==j1.getEtudiantActif() ||tabUv[i].gettAppartenance()==j1.getEtudiantEnDeclin() || nbTour==1)
 					{
-						if(((ca.isVoisin(tabUv[indice], tabUv[i])==true) || nbTour==1 ))//si l'uv choisie est à cote d'une uv appartenant au joueur
+						if(((ca.isVoisin(tabUv[indice], tabUv[i])==true) || nbTour==1 ))	// Si l'uv est voisine à une autre appartenant à l'étudiant
 						{					
-							tabUv[indice].addHeuresJ1(heures);
-							j1.getEtudiantActif().decrementerHeures(heures);
-							i=tabUv.length;
-							System.out.println("Joueur 1 a étudié l'UV " + tabUv[indice].getNomUv() + " pendant " + heures +" heures ");
+							tabUv[indice].addHeuresJ1(heures);								// Ajouter les heures du J1 sur l'UV
+							j1.getEtudiantActif().decrementerHeures(heures);				// Enlever les heures dépensées au joueur 1
+							i=tabUv.length;													// Sortir de la boucle dès que nécessaire
 						}
 						else 
 						{
@@ -243,7 +215,7 @@ public class Motor {
 			
 			}
 		}
-		else if(j==2)
+		else if(j==2)	// Même chose pour le joueur 2
 		{
 			 
 			if (heures<=j2.getEtudiantActif().getnombreDeHeures())
@@ -259,7 +231,6 @@ public class Motor {
 							tabUv[indice].addHeuresJ2(heures);
 							j2.getEtudiantActif().decrementerHeures(heures);
 							i=tabUv.length;
-							System.out.println("Joueur 2 a étudié l'UV " + tabUv[indice].getNomUv() + " pendant " + heures +" heures ");
 						}
 						else 
 						{
@@ -270,82 +241,18 @@ public class Motor {
 				}
 			}
 
-			/*--------------Attribution des appartenances---------------
-		
-			if(tabUv[indice].getHeuresJ1()>tabUv[indice].getHeuresJ2())
-			{
-				tabUv[indice].setAppartenance(j1.getEtudiantActif());
-			}
-			else if(tabUv[indice].getHeuresJ2()>tabUv[indice].getHeuresJ1())
-			{
-				tabUv[indice].setAppartenance(j2.getEtudiantActif());
-			}
-			else if (tabUv[indice].getHeuresJ1()==tabUv[indice].getHeuresJ2())
-			{
-				int lower = 1;
-				int higher = 2;
-				int random = (int)(Math.random() * (higher-lower)) + lower;
-
-				System.out.println("LANCEMENT DES DE : "+random);
-				if(random==1)
-				{
-					tabUv[indice].setAppartenance(j1.getEtudiantActif());
-				}
-				else if (random==2)
-				{
-					tabUv[indice].setAppartenance(j2.getEtudiantActif());	
-				}
-			}
-			
-			System.out.println(tabUv[indice].getNomUv()   + tabUv[indice].gettAppartenance());*/
 		}
 
 	}					
 
 	public void Appartenance() {
 		int i;
-		for(i=0;i<20;i++)
+		for(i=0;i<20;i++)			// On parcourt le tableau, pour chaque UV on comapre les heures du joueur 1 et 2 dépensées et on en déduit l'appartenance
 		{
 			if(tabUv[i].getHeuresJ1()>tabUv[i].getHeuresJ2())
 				tabUv[i].setAppartenance(j1.getEtudiantActif());
 			else if(tabUv[i].getHeuresJ2()>tabUv[i].getHeuresJ1())
 				tabUv[i].setAppartenance(j2.getEtudiantActif());
-			/*else if (tabUv[i].getHeuresJ1()==tabUv[i].getHeuresJ2())
-			{
-				int lower = 1;
-				int higher = 2;
-				int random = (int)(Math.random() * (higher-lower)) + lower;
-
-				System.out.println("LANCEMENT DES DE : "+random);
-				if(random==1)
-				{
-					tabUv[i].setAppartenance(j1.getEtudiantActif());
-				}
-				else if (random==2)
-				{
-					tabUv[i].setAppartenance(j2.getEtudiantActif());
-				}						
-
-			}*/
-		}
-	}
-
-
-
-
-
-
-
-
-
-	public void AjusteHeures(int moins, int j) {
-		if(j == 1)
-		{
-			j1.getEtudiantActif().decrementerHeures(moins);
-		}
-		else if(j == 2)
-		{
-			j2.getEtudiantActif().decrementerHeures(moins);
 		}
 	}
 
@@ -357,13 +264,13 @@ public class Motor {
 		return j2.getNbCredit();
 	}
 
-	public void Score() {
+	public void Score() {				// Calcul des Scores , pareillement, on parcoure le tableau pour chaque UV et on en déduit les scores
 		int i;
 		for (i=0;i<20;i++)
 		{
 			
 
-			if(tabUv[i].gettAppartenance() == j1.getEtudiantActif())
+			if(tabUv[i].gettAppartenance() == j1.getEtudiantActif())		
 			{
 				j1.setNbCredit(j1.getNbCredit() + tabUv[i].getPrix());
 				System.out.println("Test prise1");
@@ -381,6 +288,7 @@ public class Motor {
 		    
 		}
 	}
+	
 	public Joueur testVictoire()
 	{
 		if(j1.getNbCredit()<j2.getNbCredit())

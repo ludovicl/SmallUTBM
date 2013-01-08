@@ -116,6 +116,9 @@ public class Etudiant {
 
 	} 
 
+	public void setCaracteristique (Caracteristique cara) {
+		this.qualif = cara;
+	}
 	public String getDescription ()
 	{
 		return this.description;

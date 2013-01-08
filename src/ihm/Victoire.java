@@ -4,6 +4,7 @@ import interaction.Joueur;
 
 import java.awt.EventQueue;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -53,17 +54,18 @@ public class Victoire {
 		
 		
 		JLabel lblFinDePartie = new JLabel("Fin de Partie");
-		lblFinDePartie.setFont(new Font("Lucida Grande", Font.PLAIN, 26));
+		lblFinDePartie.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
 		lblFinDePartie.setBounds(139, 22, 195, 38);
 		frame.getContentPane().add(lblFinDePartie);
 		
 		JLabel lblGagnant = new JLabel("Gagnant :");
-		lblGagnant.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		lblGagnant.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
 		lblGagnant.setBounds(40, 134, 141, 31);
 		frame.getContentPane().add(lblGagnant);
 		
 		
-		gagnant.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		
+		gagnant.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
 		gagnant.setBounds(253, 131, 162, 36);
 		frame.getContentPane().add(gagnant);
 		
@@ -85,6 +87,10 @@ public class Victoire {
 		});
 		btnNouvellePartie.setBounds(217, 225, 141, 29);
 		frame.getContentPane().add(btnNouvellePartie);
+		
+		JLabel fond = new JLabel(new ImageIcon("Images//victoire.jpg"));
+		fond.setBounds(0, 0, 450, 300);
+		frame.getContentPane().add(fond);
 	}
 	
 	public JFrame getF(){
